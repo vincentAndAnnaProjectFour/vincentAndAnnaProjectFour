@@ -1,0 +1,19 @@
+header {
+    background:$secondaryColour;
+    .headerOverlay {
+        position: absolute;
+        top:0;
+        // text-align:center;
+    }
+    .headerImage {
+        position: relative;
+        top: 35px;
+    }
+    h1 {
+        @include fontSize1(4rem);
+    }
+}
+
+main {
+    background:$primaryColour;
+}

@@ -1,2 +1,38 @@
-$headings: 'Poppins', sans-serif;
-$paragraphs: 'Raleway', sans-serif;
+$headings: 'Archivo Narrow', sans-serif;
+$paragraphs: 'Roboto', sans-serif;
+
+@mixin fontSize1($sizeValue) {
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: $sizeValue;
+}
+
+html {
+    font-size:125%;
+    font-family: $headings;
+}
+
+img {
+    display:block;
+    max-width:100%;
+}
+
+ul li {
+    list-style:none;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    width:80%;
+    max-width:1280px;
+    margin: 0 auto;
+}
+
+h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration:none;
+}

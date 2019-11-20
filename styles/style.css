@@ -144,3 +144,43 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   clip-path: inset(100%);
   clip: rect(0 0 0);
   overflow: hidden; }
+
+html {
+  font-size: 125%;
+  font-family: "Archivo Narrow", sans-serif; }
+
+img {
+  display: block;
+  max-width: 100%; }
+
+ul li {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+.wrapper {
+  width: 80%;
+  max-width: 1280px;
+  margin: 0 auto; }
+
+h1, h2, h3, p {
+  margin: 0;
+  padding: 0; }
+
+a {
+  text-decoration: none; }
+
+header {
+  background: #E91431; }
+  header .headerOverlay {
+    position: absolute;
+    top: 0; }
+  header .headerImage {
+    position: relative;
+    top: 35px; }
+  header h1 {
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 4rem; }
+
+main {
+  background: #FFFFFF; }
