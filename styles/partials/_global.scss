@@ -1,11 +1,16 @@
+// GLOBAL VARIABLES STARTS HERE
 $headings: 'Archivo Narrow', sans-serif;
 $paragraphs: 'Roboto', sans-serif;
+// GLOBAL VARIABLES ENDS HERE
 
+// GLOBAL MIXINS STARTS HERE
 @mixin fontSize1($sizeValue) {
     font-family: 'Archivo Narrow', sans-serif;
     font-size: $sizeValue;
 }
+// GLOBAL MIXINS ENDS HERE
 
+// GLOBAL STYLES STARTS HERE
 html {
     font-size:125%;
     font-family: $headings;
@@ -40,3 +45,4 @@ h1, h2, h3, p {
 a {
     text-decoration:none;
 }
+// GLOBAL STYLES ENDS HERE

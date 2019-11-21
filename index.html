@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TOeats</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow:700|Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    
+    <!-- HEADER CONTENT STARTS HERE -->
     <header>
         <div class="wrapper">
             <div class="headerOverlay">
@@ -24,28 +25,34 @@
             </div>
         </div>
     </header>
-
+    <!-- HEADER CONTENT ENDS HERE -->
+    <!-- MAIN CONTENT STARTS HERE -->
     <main>
+        <!-- CUISINE BUTTONS CONTENT STARTS HERE -->
         <section id="cuisineButtons" class="cuisineButtons wrapper">
             <h2>Select a cuisine!</h2>
-            <ul>
-                <li><a href="#restaurantOptions"><img src="assets/chineseFood.jpg" alt="Top down view of an array of Chinese food including steamed dumplings, noodles, spring rolls, rice and chicken."></a><p>Chinese</p></li>
-                <li><a href="#restaurantOptions"><img src="assets/thaiFood.jpg" alt="Top down view of an array of Thai food including chicken, pad thai, curry, pad kra pow, fried egg, cashews and peppers."></a><p>Thai</p></li>
-                <li><a href="#restaurantOptions"><img src="assets/japaneseFood.jpg" alt="Top down view of an array of Japanese food including shrimp tempura, ramen, udon, salad, soba, chicken karaage and age dashi tofu."></a><p>Japanese</p></li>
-                <li><a href="#restaurantOptions"><img src="assets/bubbleTea.jpeg" alt="Front view of 3 clear glass mugs of mixed fruit drinks and 3 cups of milk tea behind."></a><p>Bubble Tea</p></li>
+            <ul id="cuisineButtonsList">
+                <li><a id="25" href="#restaurantOptions"><img src="assets/chineseFood.jpg" alt="Top down view of an array of Chinese food including steamed dumplings, noodles, spring rolls, rice and chicken."></a><p>Chinese</p></li>
+                <li><a id="95" href="#restaurantOptions"><img src="assets/thaiFood.jpg" alt="Top down view of an array of Thai food including chicken, pad thai, curry, pad kra pow, fried egg, cashews and peppers."></a><p>Thai</p></li>
+                <li><a id="60" href="#restaurantOptions"><img src="assets/japaneseFood.jpg" alt="Top down view of an array of Japanese food including shrimp tempura, ramen, udon, salad, soba, chicken karaage and age dashi tofu."></a><p>Japanese</p></li>
+                <li><a id="247" href="#restaurantOptions"><img src="assets/bubbleTea.jpeg" alt="Front view of 3 clear glass mugs of mixed fruit drinks and 3 cups of milk tea behind."></a><p>Bubble Tea</p></li>
             </ul>
         </section>
+        <!-- CUISINE BUTTONS CONTENT ENDS HERE -->
+        <!-- RESTAURANT OPTIONS CONTENT STARTS HERE -->
         <section id="restaurantOptions" class="restaurantOptions wrapper">
 
         </section>
+        <!-- RESTAURANT OPTIONS CONTENT ENDS HERE -->
     </main>
-
+    <!-- MAIN CONTENT ENDS HERE -->
+    <!-- FOOTER CONTENT STARTS HERE -->
     <footer>
         <div class="wrapper">
             <p>Copyright <i class="far fa-copyright" aria-label="copyright symbol"></i> Vincent & Anna 2019</p>
         </div>
     </footer>
-
+    <!-- FOOTER CONTENT ENDS HERE -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="crossorigin="anonymous"></script>
     <script src="script.js"></script>
     
