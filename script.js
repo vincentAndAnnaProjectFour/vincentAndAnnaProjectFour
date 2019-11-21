@@ -14,8 +14,15 @@ cuisineApp.cuisineButtonEvent = function() {
 
     cuisineButtons.forEach(function(button) {
         $(button).on('click', function(){
-            const cuisineID = $(button).attr('id');
-            cuisineApp.ajaxRequest(cuisineID);
+            if($('#displayedRestaurants li').length >= 1) {
+                $('#displayedRestaurants').empty();
+                const cuisineID = $(button).attr('id');
+                cuisineApp.ajaxRequest(cuisineID);
+            }
+            else {
+                const cuisineID = $(button).attr('id');
+                cuisineApp.ajaxRequest(cuisineID);
+            }
         });
     });
 }
@@ -23,26 +30,76 @@ cuisineApp.cuisineButtonEvent = function() {
 cuisineApp.ajaxRequest = function(cID) {
     
     // AJAX Function will get info from URL based on argument passed
-    $.ajax({ 
-        url: `https://developers.zomato.com/api/v2.1/search?entity_id=89&entity_type=city&cuisines=${cID}`, 
-        method: 'GET', 
-        dataType: 'json', 
-        headers: {
-            'user-key': cuisineApp.key
-        }
-    })
-    .then(function(result){
-        console.log(result);
-    });
-    // Then store result in the variable generated
+    cuisineApp.restaurantOptions =  $.ajax({ 
+            url: `https://developers.zomato.com/api/v2.1/search?entity_id=89&entity_type=city&cuisines=${cID}`, 
+            method: 'GET', 
+            dataType: 'json', 
+            headers: {
+                'user-key': cuisineApp.key
+            }
+        }).then((result) => {
+            const { restaurants } = result;
+            cuisineApp.displayRestaurants(restaurants);
+                // Then store result in the variable generated
+                // console.log(`Name: ${restaurant.name} Url: ${restaurant.url} Address: ${restaurant.location.address} Average Price: ${restaurant.average_cost_for_two} Price Range: ${restaurant.price_range} User rating: ${restaurant.user_rating.aggregate_rating} Review Count: ${restaurant.all_reviews_count} Featured Image: ${restaurant.featured_image} Phone: ${restaurant.phone_numbers }`);
+                // Call Display Restaurants Function passing the result variable as an argument
+        });
+    }
     
-    // Call Display Restaurants Function passing the result variable as an argument
-}
-// Display Restaurants Function collected from AJAX request
-cuisineApp.displayRestaurants = function() {
 
-    // Pull keys from object for image, address, avg cost, phone number
-    // 	Append the DOM with the variables in containers
+// Display Restaurants Function collected from AJAX request
+cuisineApp.displayRestaurants = function(item) {
+    item.forEach(option => {
+        const { restaurant } = option;
+        // Pull keys from object for image, address, avg cost, phone number
+        const {
+            name,
+            url,
+            location,
+            average_cost_for_two: averageCostForTwo,
+            price_range: priceRange,
+            user_rating,
+            all_reviews_count: reviewCount,
+            featured_image: featuredImage,
+            phone_numbers: phoneNumber
+        } = restaurant;
+
+        const rating = user_rating.aggregate_rating;
+        const address = location.address;
+
+        // 	Append the DOM with the variables in containers
+        // console.log(name,
+        // url,
+        // address,
+        // average_cost_for_two,
+        // price_range,
+        // rating,
+        // all_reviews_count,
+        // featured_image,
+        // phone_numbers);
+        // const $displayedRestaurantItems = $('#displayedRestaurants li');
+        const $displayedRestaurants = $('#displayedRestaurants');
+        const restaurantDescription = `
+        <li>
+            <div class="itemDetails">
+                <a href="${url}">
+                    <img src="${featuredImage}">
+                    <h3>${name}</h3>
+                    <div class="starRating">
+                        <p>Rating: ${rating}</p>
+                    </div>
+                    <p>Review Count: ${reviewCount}</p>
+                    <p>Average Cost (For Two): ${averageCostForTwo} </p> 
+                    <p>Price: ${priceRange}</p>
+                    <p>Address: ${address}</p>
+                    <p>Phone: ${phoneNumber}</p>
+                <p></p>
+                </a>
+            </div>
+        </li>
+        `;    
+        $displayedRestaurants.append(restaurantDescription);
+    });
 }
 // Start init app by calling cuisine button event function
 cuisineApp.init = function() {
