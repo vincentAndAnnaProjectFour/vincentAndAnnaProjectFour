@@ -1,5 +1,8 @@
 header {
     background:$secondaryColour;
+    .wrapper {
+        position: relative;
+    }
     .headerOverlay {
         position: absolute;
         top:0;
@@ -8,6 +11,12 @@ header {
     .headerImage {
         position: relative;
         top: 35px;
+    }
+    .awardImage img {
+        position: absolute;
+        top:0;
+        right:0;
+        width: 300px;
     }
     h1 {
         @include fontSize1(4rem);

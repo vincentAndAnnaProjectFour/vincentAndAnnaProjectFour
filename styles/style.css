@@ -151,12 +151,15 @@ html {
 
 img {
   display: block;
-  max-width: 100%; }
+  width: 100%; }
 
-ul li {
-  list-style: none;
+ul {
   margin: 0;
   padding: 0; }
+  ul li {
+    list-style: none;
+    margin: 0;
+    padding: 0; }
 
 .wrapper {
   width: 80%;
@@ -172,15 +175,60 @@ a {
 
 header {
   background: #E91431; }
+  header .wrapper {
+    position: relative; }
   header .headerOverlay {
     position: absolute;
     top: 0; }
   header .headerImage {
     position: relative;
     top: 35px; }
+  header .awardImage img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px; }
   header h1 {
     font-family: 'Archivo Narrow', sans-serif;
     font-size: 4rem; }
 
 main {
   background: #FFFFFF; }
+
+main {
+  background: #E91431;
+  padding-bottom: 20px; }
+  main .wrapper {
+    background: #FFFFFF;
+    border-radius: 25px; }
+
+.cuisineButtons {
+  padding: 50px; }
+  .cuisineButtons ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    padding-top: 20px; }
+  .cuisineButtons li {
+    width: calc(100% / 4);
+    text-align: center; }
+  .cuisineButtons a {
+    overflow: hidden;
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    border-radius: 100%; }
+    .cuisineButtons a img {
+      -o-object-fit: cover;
+      object-fit: cover;
+      width: 100%;
+      height: 100%; }
+
+footer {
+  background: #E91431;
+  text-align: center;
+  padding: 20px 0px; }

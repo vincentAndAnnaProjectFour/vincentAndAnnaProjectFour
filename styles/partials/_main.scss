@@ -1,0 +1,35 @@
+main {
+    background: $secondaryColour;
+    padding-bottom: 20px;
+    .wrapper {
+        background:$primaryColour;
+        border-radius:25px;
+        // box-shadow:20px -20px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.cuisineButtons {
+    padding: 50px;
+    ul {
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:space-around;
+        padding-top: 20px;
+    }
+    li {
+        width:calc(100% / 4);
+        text-align:center;
+    }
+    a {
+        overflow:hidden;
+        display:inline-block;
+        width: 200px;
+        height: 200px;
+        border-radius: 100%;
+        img {
+            object-fit:cover;
+            width:100%;
+            height:100%;
+        }
+    }
+}
