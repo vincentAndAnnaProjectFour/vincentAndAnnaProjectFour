@@ -38,11 +38,12 @@ cuisineApp.ajaxRequest = function(cID) {
                 'user-key': cuisineApp.key
             }
         }).then((result) => {
+            // Then store result in the variable generated
             const { restaurants } = result;
+            // Call Display Restaurants Function passing the result variable as an argument
             cuisineApp.displayRestaurants(restaurants);
-                // Then store result in the variable generated
-                // console.log(`Name: ${restaurant.name} Url: ${restaurant.url} Address: ${restaurant.location.address} Average Price: ${restaurant.average_cost_for_two} Price Range: ${restaurant.price_range} User rating: ${restaurant.user_rating.aggregate_rating} Review Count: ${restaurant.all_reviews_count} Featured Image: ${restaurant.featured_image} Phone: ${restaurant.phone_numbers }`);
-                // Call Display Restaurants Function passing the result variable as an argument
+        }).catch((error) => {
+            console.log(error);
         });
     }
     
@@ -66,37 +67,27 @@ cuisineApp.displayRestaurants = function(item) {
 
         const rating = user_rating.aggregate_rating;
         const address = location.address;
+        const $displayedRestaurants = $('#displayedRestaurants');
 
         // 	Append the DOM with the variables in containers
-        // console.log(name,
-        // url,
-        // address,
-        // average_cost_for_two,
-        // price_range,
-        // rating,
-        // all_reviews_count,
-        // featured_image,
-        // phone_numbers);
-        // const $displayedRestaurantItems = $('#displayedRestaurants li');
-        const $displayedRestaurants = $('#displayedRestaurants');
         const restaurantDescription = `
-        <li>
-            <div class="itemDetails">
-                <a href="${url}"><img src="${featuredImage}"></a>
-                <h3>${name}</h3>
-                <div class="starRating">
-                    <p>${rating}</p>
-                    <i class="fas fa-star"></i>
+            <li>
+                <div class="itemDetails">
+                    <a href="${url}"><img src="${featuredImage}"></a>
+                    <h3>${name}</h3>
+                    <div class="starRating">
+                        <p>${rating}</p>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="description">
+                        <p>${reviewCount} Reviews</p>
+                        <p>Average Cost (For Two): ${averageCostForTwo} </p> 
+                        <p>Price: ${priceRange}</p>
+                        <p>${address}</p>
+                        <p>${phoneNumber}</p>
+                    </div>
                 </div>
-                <div class="description">
-                    <p>${reviewCount} Reviews</p>
-                    <p>Average Cost (For Two): ${averageCostForTwo} </p> 
-                    <p>Price: ${priceRange}</p>
-                    <p>${address}</p>
-                    <p>${phoneNumber}</p>
-                </div>
-            </div>
-        </li>
+            </li>
         `;    
         $displayedRestaurants.append(restaurantDescription);
     });
