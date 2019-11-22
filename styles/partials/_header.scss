@@ -10,6 +10,7 @@ header {
         z-index: 10;
         h1 {
             @include fontSize1(4rem);
+            cursor:default;
             &:hover span {
                 text-shadow: 5px 5px $tertiaryColour;
             }
@@ -20,7 +21,7 @@ header {
     }
     .headerImage {
         position: relative;
-        top: 37px;
+        top: 40px;
     }
     .awardImage img {
         position: absolute;

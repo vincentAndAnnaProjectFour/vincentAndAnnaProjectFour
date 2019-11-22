@@ -74,24 +74,37 @@ cuisineApp.displayRestaurants = function(item) {
             <li>
                 <div class="itemDetails">
                     <a href="${url}"><img src="${featuredImage}"></a>
-                    <h3>${name}</h3>
+                    <div class="bookmark" id="bookmark">
+                        <i class="fas fa-bookmark"></i>
+                    </div>
                     <div class="starRating">
                         <p>${rating}</p>
-                        <i class="fas fa-star"></i>
                     </div>
                     <div class="description">
-                        <p>${reviewCount} Reviews</p>
-                        <p>Average Cost (For Two): ${averageCostForTwo} </p> 
-                        <p>Price: ${priceRange}</p>
-                        <p>${address}</p>
+                        <h3>${name}</h3>
+                        <p class="address">${address}</p>
                         <p>${phoneNumber}</p>
+                        <p>Price: ${priceRange} | ${reviewCount} Reviews</p>
                     </div>
                 </div>
             </li>
         `;    
         $displayedRestaurants.append(restaurantDescription);
+
+        // bookmarks.push($('#bookmark'))
+        // console.log(bookmarks);
+
+        // bookmark.on('click', function () {
+        //     console.log(this)
+        //     $(this).toggleClass('saved');
+        //     // bookmarks.push($(this));
+        // });
     });
 }
+
+const bookmarks = [];
+
+
 // Start init app by calling cuisine button event function
 cuisineApp.init = function() {
     cuisineApp.cuisineButtonEvent();

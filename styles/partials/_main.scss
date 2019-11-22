@@ -4,9 +4,9 @@ main {
     padding: 0px 0px 60px 0px;
     // box-shadow:0px 0px 10px 5px rgba(0, 0, 0, .5);
     .wrapper {
-        background:$primaryColour;
+        margin-top: 80px;
+        background: rgba(0,0,0,.1);
         border-radius:25px;
-        box-shadow:0px 0px 20px 20px rgba(0, 0, 0, 0.1);
     }
 }
 
@@ -56,37 +56,48 @@ main {
         padding: 0px 20px;
     }
     .itemDetails {
+        background: $primaryColour;
         height:400px;
         margin-bottom: 50px;
-        position:relative;
-        // overflow:hidden;
+        position: relative;
+        border-radius: 5px;
+        overflow:hidden;
         img {
             height:200px;
             object-fit: cover;
-            box-shadow: 5px 5px 5px 0px rgba(0,0,0,.5);
+            border-radius: 5px;
         }
-        h3 {
-            text-transform:uppercase;
-            position:absolute;
-            top:0px;
-            z-index:1;
-            background:rgba(255,188,13,.8);
-            width: 100%;
-            padding: 10px;
+        .bookmark, .starRating {
+            position: absolute;
+            top: 0;
+            z-index: 1;
+        }
+        .bookmark {
+            left: 0;
+            transition: all 1s;
+            &:hover {
+                transform:scaleY(2);
+            }
+        }
+        .saved {
+            transform:scaleY(2);
+        }
+        .fa-bookmark {
+            color: $tertiaryColour;
+            font-size:2rem;
         }
         .starRating {
-            position:absolute;
-            top:140px;
+            background:$secondaryColour;
             right:0;
-            z-index:1;
-            padding: 10px;
+            padding: 15px 25px;
+            border-radius: 0px 0px 0px 5px;
             p {
                 position: absolute;
-                top:20px;
-                right:17px;
+                top:5px;
+                right:15px;
                 z-index:2;
                 // border: 1px solid red;
-                color:black;
+                color:$primaryColour;
             }
         }
         .fa-star {
@@ -98,6 +109,12 @@ main {
         }
         .description {
             padding: 20px;
+            p {
+                opacity:50%;
+            }
+        }
+        .address {
+            text-transform:uppercase;
         }
     }
 }

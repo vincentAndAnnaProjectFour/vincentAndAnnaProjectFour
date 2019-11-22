@@ -147,7 +147,7 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 
 html {
   font-size: 125%;
-  font-family: "Archivo Narrow", sans-serif; }
+  font-family: "Alata", sans-serif; }
 
 img {
   display: block;
@@ -174,7 +174,7 @@ a {
   text-decoration: none; }
 
 p {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-size: 0.9rem; }
 
 header {
@@ -186,8 +186,9 @@ header {
     top: 0;
     z-index: 10; }
     header .headerOverlay h1 {
-      font-family: 'Archivo Narrow', sans-serif;
-      font-size: 4rem; }
+      font-family: "Alata", sans-serif;
+      font-size: 4rem;
+      cursor: default; }
       header .headerOverlay h1:hover span {
         text-shadow: 5px 5px #FFBC0D; }
     header .headerOverlay span {
@@ -196,7 +197,7 @@ header {
       transition: text-shadow 0.5s ease-in; }
   header .headerImage {
     position: relative;
-    top: 37px; }
+    top: 40px; }
   header .awardImage img {
     position: absolute;
     top: 0;
@@ -207,10 +208,9 @@ main {
   background: #FFFFFF;
   padding: 0px 0px 60px 0px; }
   main .wrapper {
-    background: #FFFFFF;
-    border-radius: 25px;
-    -webkit-box-shadow: 0px 0px 20px 20px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 0px 20px 20px rgba(0, 0, 0, 0.1); }
+    margin-top: 80px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 25px; }
 
 .cuisineButtons {
   padding: 50px 50px 0px; }
@@ -263,35 +263,48 @@ main {
     width: calc(100% / 3);
     padding: 0px 20px; }
   .restaurantOptions .itemDetails {
+    background: #FFFFFF;
     height: 400px;
     margin-bottom: 50px;
-    position: relative; }
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden; }
     .restaurantOptions .itemDetails img {
       height: 200px;
       -o-object-fit: cover;
       object-fit: cover;
-      -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.5);
-      box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.5); }
-    .restaurantOptions .itemDetails h3 {
-      text-transform: uppercase;
+      border-radius: 5px; }
+    .restaurantOptions .itemDetails .bookmark, .restaurantOptions .itemDetails .starRating {
       position: absolute;
-      top: 0px;
-      z-index: 1;
-      background: rgba(255, 188, 13, 0.8);
-      width: 100%;
-      padding: 10px; }
+      top: 0;
+      z-index: 1; }
+    .restaurantOptions .itemDetails .bookmark {
+      left: 0;
+      -webkit-transition: all 1s;
+      -o-transition: all 1s;
+      transition: all 1s; }
+      .restaurantOptions .itemDetails .bookmark:hover {
+        -webkit-transform: scaleY(2);
+        -ms-transform: scaleY(2);
+        transform: scaleY(2); }
+    .restaurantOptions .itemDetails .saved {
+      -webkit-transform: scaleY(2);
+      -ms-transform: scaleY(2);
+      transform: scaleY(2); }
+    .restaurantOptions .itemDetails .fa-bookmark {
+      color: #FFBC0D;
+      font-size: 2rem; }
     .restaurantOptions .itemDetails .starRating {
-      position: absolute;
-      top: 140px;
+      background: #E91431;
       right: 0;
-      z-index: 1;
-      padding: 10px; }
+      padding: 15px 25px;
+      border-radius: 0px 0px 0px 5px; }
       .restaurantOptions .itemDetails .starRating p {
         position: absolute;
-        top: 20px;
-        right: 17px;
+        top: 5px;
+        right: 15px;
         z-index: 2;
-        color: black; }
+        color: #FFFFFF; }
     .restaurantOptions .itemDetails .fa-star {
       position: absolute;
       color: #FFBC0D;
@@ -300,6 +313,10 @@ main {
       text-shadow: 2px 2px 1px #000000; }
     .restaurantOptions .itemDetails .description {
       padding: 20px; }
+      .restaurantOptions .itemDetails .description p {
+        opacity: 50%; }
+    .restaurantOptions .itemDetails .address {
+      text-transform: uppercase; }
 
 footer {
   background: #FFFFFF;

@@ -1,16 +1,17 @@
 // GLOBAL VARIABLES STARTS HERE
-$headings: 'Archivo Narrow', sans-serif;
-$paragraphs: 'Roboto', sans-serif;
+$headings:  'Alata', sans-serif;
+$paragraphs: 'Roboto Condensed', sans-serif;
+
 // GLOBAL VARIABLES ENDS HERE
 
 // GLOBAL MIXINS STARTS HERE
 @mixin fontSize1($sizeValue) {
-    font-family: 'Archivo Narrow', sans-serif;
+    font-family: $headings;
     font-size: $sizeValue;
 }
 
 @mixin fontSize2($sizeValue) {
-    font-family: 'Roboto', sans-serif;
+    font-family: $paragraphs;
     font-size: $sizeValue;
 }
 
