@@ -7,7 +7,16 @@ header {
     .headerOverlay {
         position: absolute;
         top:0;
-        // text-align:center;
+        z-index: 10;
+        h1 {
+            @include fontSize1(4rem);
+            &:hover span {
+                text-shadow: 5px 5px $tertiaryColour;
+            }
+        }
+        span {
+            transition: text-shadow 0.5s ease-in;
+        }
     }
     .headerImage {
         position: relative;
@@ -18,9 +27,6 @@ header {
         top:0;
         right:0;
         width: 300px;
-    }
-    h1 {
-        @include fontSize1(4rem);
     }
 }
 // HEADER CONTENT ENDS HERE

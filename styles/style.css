@@ -183,7 +183,17 @@ header {
     position: relative; }
   header .headerOverlay {
     position: absolute;
-    top: 0; }
+    top: 0;
+    z-index: 10; }
+    header .headerOverlay h1 {
+      font-family: 'Archivo Narrow', sans-serif;
+      font-size: 4rem; }
+      header .headerOverlay h1:hover span {
+        text-shadow: 5px 5px #FFBC0D; }
+    header .headerOverlay span {
+      -webkit-transition: text-shadow 0.5s ease-in;
+      -o-transition: text-shadow 0.5s ease-in;
+      transition: text-shadow 0.5s ease-in; }
   header .headerImage {
     position: relative;
     top: 37px; }
@@ -192,9 +202,6 @@ header {
     top: 0;
     right: 0;
     width: 300px; }
-  header h1 {
-    font-family: 'Archivo Narrow', sans-serif;
-    font-size: 4rem; }
 
 main {
   background: #FFFFFF;
