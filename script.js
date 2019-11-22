@@ -82,19 +82,19 @@ cuisineApp.displayRestaurants = function(item) {
         const restaurantDescription = `
         <li>
             <div class="itemDetails">
-                <a href="${url}">
-                    <img src="${featuredImage}">
-                    <h3>${name}</h3>
-                    <div class="starRating">
-                        <p>Rating: ${rating}</p>
-                    </div>
-                    <p>Review Count: ${reviewCount}</p>
+                <a href="${url}"><img src="${featuredImage}"></a>
+                <h3>${name}</h3>
+                <div class="starRating">
+                    <p>${rating}</p>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="description">
+                    <p>${reviewCount} Reviews</p>
                     <p>Average Cost (For Two): ${averageCostForTwo} </p> 
                     <p>Price: ${priceRange}</p>
-                    <p>Address: ${address}</p>
-                    <p>Phone: ${phoneNumber}</p>
-                <p></p>
-                </a>
+                    <p>${address}</p>
+                    <p>${phoneNumber}</p>
+                </div>
             </div>
         </li>
         `;    

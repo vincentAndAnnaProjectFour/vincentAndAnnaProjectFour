@@ -1,16 +1,17 @@
 // MAIN STYLES STARTS HERE
 main {
-    background: $secondaryColour;
-    padding-bottom: 20px;
+    background: $primaryColour;
+    padding: 0px 0px 60px 0px;
+    // box-shadow:0px 0px 10px 5px rgba(0, 0, 0, .5);
     .wrapper {
         background:$primaryColour;
         border-radius:25px;
-        // box-shadow:20px -20px rgba(0, 0, 0, 0.1);
+        box-shadow:0px 0px 20px 20px rgba(0, 0, 0, 0.1);
     }
 }
 
 .cuisineButtons {
-    padding: 50px;
+    padding: 50px 50px 0px;
     ul {
         display:flex;
         flex-wrap:wrap;
@@ -27,10 +28,76 @@ main {
         width: 200px;
         height: 200px;
         border-radius: 100%;
+        border: 8px solid transparent;
+        &:hover {
+            border: 8px solid $tertiaryColour;
+        }
         img {
             object-fit:cover;
             width:100%;
             height:100%;
+            transition: all 1s;
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+    }
+}
+
+.restaurantOptions {
+    padding: 50px;
+    ul {
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:flex-start;
+    }
+    li {
+        width:calc(100% / 3);
+        padding: 0px 20px;
+    }
+    .itemDetails {
+        height:400px;
+        margin-bottom: 50px;
+        position:relative;
+        // overflow:hidden;
+        img {
+            height:200px;
+            object-fit: cover;
+            box-shadow: 5px 5px 5px 0px rgba(0,0,0,.5);
+        }
+        h3 {
+            text-transform:uppercase;
+            position:absolute;
+            top:0px;
+            z-index:1;
+            background:rgba(255,188,13,.8);
+            width: 100%;
+            padding: 10px;
+        }
+        .starRating {
+            position:absolute;
+            top:140px;
+            right:0;
+            z-index:1;
+            padding: 10px;
+            p {
+                position: absolute;
+                top:20px;
+                right:17px;
+                z-index:2;
+                // border: 1px solid red;
+                color:black;
+            }
+        }
+        .fa-star {
+            position: absolute;
+            color:$tertiaryColour;
+            right:5px;
+            font-size:2.1rem;
+            text-shadow:2px 2px 1px $accentColour;
+        }
+        .description {
+            padding: 20px;
         }
     }
 }

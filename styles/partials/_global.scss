@@ -8,6 +8,12 @@ $paragraphs: 'Roboto', sans-serif;
     font-family: 'Archivo Narrow', sans-serif;
     font-size: $sizeValue;
 }
+
+@mixin fontSize2($sizeValue) {
+    font-family: 'Roboto', sans-serif;
+    font-size: $sizeValue;
+}
+
 // GLOBAL MIXINS ENDS HERE
 
 // GLOBAL STYLES STARTS HERE
@@ -32,7 +38,7 @@ ul {
 }
 
 .wrapper {
-    width:80%;
+    width:85%;
     max-width:1280px;
     margin: 0 auto;
 }
@@ -44,5 +50,10 @@ h1, h2, h3, p {
 
 a {
     text-decoration:none;
+}
+
+p {
+    @include fontSize2(.9rem);
+    // line-height:30px;
 }
 // GLOBAL STYLES ENDS HERE

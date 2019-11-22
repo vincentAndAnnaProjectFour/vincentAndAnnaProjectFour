@@ -11,7 +11,7 @@ header {
     }
     .headerImage {
         position: relative;
-        top: 35px;
+        top: 37px;
     }
     .awardImage img {
         position: absolute;
@@ -22,9 +22,5 @@ header {
     h1 {
         @include fontSize1(4rem);
     }
-}
-
-main {
-    background:$primaryColour;
 }
 // HEADER CONTENT ENDS HERE
