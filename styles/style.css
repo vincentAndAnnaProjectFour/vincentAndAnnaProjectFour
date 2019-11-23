@@ -170,6 +170,10 @@ h1, h2, h3, p {
   margin: 0;
   padding: 0; }
 
+h3 {
+  line-height: 1;
+  margin-bottom: 5px; }
+
 a {
   text-decoration: none; }
 
@@ -185,35 +189,35 @@ p {
   z-index: 99;
   border: none;
   outline: none;
-  background-color: white;
+  background-color: #FFFFFF;
   cursor: pointer;
-  border-radius: 50%;
+  border-radius: 100%;
   padding: 0; }
 
 .scrollToTop i {
-  color: black;
+  color: #BA0018;
   font-size: 2rem;
-  padding: 10px;
+  padding: 5px;
   border-radius: 100%;
   -webkit-transition: all 0.5s;
   -o-transition: all 0.5s;
   transition: all 0.5s; }
 
 .scrollToTop:hover i {
-  background: #000000;
+  background: #BA0018;
   color: #FFFFFF; }
 
 header {
-  background: #E91431; }
+  background: #ba0018; }
   header .wrapper {
-    position: relative; }
+    position: relative;
+    padding-bottom: 80px; }
   header .headerOverlay {
-    position: absolute;
-    top: 0;
-    z-index: 10; }
+    position: absolute; }
     header .headerOverlay h1 {
       font-family: "Alata", sans-serif;
       font-size: 4rem;
+      margin-top: 20px;
       cursor: default; }
       header .headerOverlay h1:hover span {
         text-shadow: 5px 5px #FFBC0D; }
@@ -222,8 +226,9 @@ header {
       -o-transition: text-shadow 0.5s ease-in;
       transition: text-shadow 0.5s ease-in; }
   header .headerImage {
+    margin: 0 auto;
     position: relative;
-    top: 40px; }
+    top: 116px; }
   header .awardImage img {
     position: absolute;
     top: 0;
@@ -231,11 +236,10 @@ header {
     width: 300px; }
 
 main {
-  background: #FFFFFF;
+  background: #ba0018;
   padding: 0px 0px 60px 0px; }
   main .wrapper {
-    margin-top: 80px;
-    background: rgba(0, 0, 0, 0.1);
+    background: #fafafa;
     border-radius: 25px; }
 
 .cuisineButtons {
@@ -258,9 +262,9 @@ main {
     width: 200px;
     height: 200px;
     border-radius: 100%;
-    border: 8px solid transparent; }
+    border: 8px solid #FFBC0D; }
     .cuisineButtons a:hover {
-      border: 8px solid #FFBC0D; }
+      border: 8px solid transparent; }
     .cuisineButtons a img {
       -o-object-fit: cover;
       object-fit: cover;
@@ -290,7 +294,8 @@ main {
     padding: 0px 20px; }
   .restaurantOptions .itemDetails {
     background: #FFFFFF;
-    height: 400px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    height: 425px;
     margin-bottom: 50px;
     position: relative;
     border-radius: 5px;
@@ -302,26 +307,22 @@ main {
       border-radius: 5px; }
     .restaurantOptions .itemDetails .bookmark, .restaurantOptions .itemDetails .starRating {
       position: absolute;
-      top: 0;
+      top: -1px;
       z-index: 1; }
     .restaurantOptions .itemDetails .bookmark {
-      left: 0;
+      left: 0; }
+    .restaurantOptions .itemDetails .fa-bookmark {
+      color: #FFBC0D;
+      font-size: 2rem;
       -webkit-transition: all 1s;
       -o-transition: all 1s;
       transition: all 1s; }
-      .restaurantOptions .itemDetails .bookmark:hover {
+      .restaurantOptions .itemDetails .fa-bookmark:hover {
         -webkit-transform: scaleY(2);
         -ms-transform: scaleY(2);
         transform: scaleY(2); }
-    .restaurantOptions .itemDetails .saved {
-      -webkit-transform: scaleY(2);
-      -ms-transform: scaleY(2);
-      transform: scaleY(2); }
-    .restaurantOptions .itemDetails .fa-bookmark {
-      color: #FFBC0D;
-      font-size: 2rem; }
     .restaurantOptions .itemDetails .starRating {
-      background: #E91431;
+      background: #BA0018;
       right: 0;
       padding: 15px 25px;
       border-radius: 0px 0px 0px 5px; }
@@ -333,18 +334,24 @@ main {
         color: #FFFFFF; }
     .restaurantOptions .itemDetails .fa-star {
       position: absolute;
-      color: #FFBC0D;
-      right: 5px;
-      font-size: 2.1rem;
-      text-shadow: 2px 2px 1px #000000; }
+      color: #FFFFFF;
+      top: 10px;
+      right: 3.5px;
+      font-size: 1rem; }
     .restaurantOptions .itemDetails .description {
       padding: 20px; }
       .restaurantOptions .itemDetails .description p {
         opacity: 50%; }
     .restaurantOptions .itemDetails .address {
       text-transform: uppercase; }
+    .restaurantOptions .itemDetails .priceAndReviews {
+      margin-top: 10px; }
+    .restaurantOptions .itemDetails span {
+      background: rgba(0, 0, 0, 0.1);
+      padding: 5px; }
 
 footer {
-  background: #FFFFFF;
+  background: #ba0018;
+  color: #FFFFFF;
   text-align: center;
-  padding: 20px 0px; }
+  padding-bottom: 20px; }

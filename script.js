@@ -84,8 +84,8 @@ cuisineApp.displayRestaurants = function (item) {
                     <div class="description">
                         <h3>${name}</h3>
                         <p class="address">${address}</p>
-                        <p>${phoneNumber}</p>
-                        <p><span class="price">${priceRange}</span> | ${reviewCount} Reviews</p>
+                        <p class="phoneNumber">${phoneNumber}</p>
+                        <p class="priceAndReviews"><span class="price">${priceRange}</span> <span class="reviews">${reviewCount} Reviews</span></p>
                     </div>
                 </div>
             </li>
@@ -97,10 +97,18 @@ cuisineApp.displayRestaurants = function (item) {
         const prices = $('.price');
         const dollarSigns = '$'
 
-        const priceInDollars = $('.price').map(function () {
+        const priceInDollars = prices.map(function () {
             const priceInNumbers = parseInt($(this).text());
-            $(this).replaceWith(dollarSigns.repeat(priceInNumbers));
+            $(this).replaceWith(`<span>${dollarSigns.repeat(priceInNumbers)}</span>`);
         }) 
+
+        //Shorten phone number
+        const phoneNumbers = $('.phoneNumber');
+        
+        const shortenedPhoneNumbers = phoneNumbers.map(function () {
+            const newString = $(this).text().replace('+1 ','');
+            $(this).replaceWith(`<p>${newString}</p>`);
+        })
 
     });
 }
@@ -115,12 +123,16 @@ cuisineApp.bookmarkRestaurants = function (item) {
     bookmarks.forEach(function (bookmark) {
         $(bookmark).on('click', function () {
             if ($(this).hasClass('saved')) {
+                $(this).html(`<i class="fas fa-bookmark"></i>`);
+                $(this).find('.fa-bookmark').css('transform', 'none');
                 $(this).removeClass('saved');
                 saved = saved.filter(function (value) {
                     return value !== $(bookmark).attr('id');
                 });
             } else {
                 $(this).addClass('saved');
+                $(this).append(`<i class="fas fa-star"></i>`);
+                $(this).find('.fa-bookmark').css('transform', 'scaleY(2)');
                 saved.push($(this).attr('id'));
             }
         })

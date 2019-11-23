@@ -1,15 +1,18 @@
 // HEADER CONTENT STARTS HERE
 header {
-    background:$secondaryColour;
+    // background:$secondaryColour;
+    background:rgb(186,0,24);
     .wrapper {
         position: relative;
+        padding-bottom: 80px;
     }
     .headerOverlay {
         position: absolute;
-        top:0;
-        z-index: 10;
+        // top:0;
+        // z-index: 10;
         h1 {
             @include fontSize1(4rem);
+            margin-top: 20px;
             cursor:default;
             &:hover span {
                 text-shadow: 5px 5px $tertiaryColour;
@@ -20,8 +23,9 @@ header {
         }
     }
     .headerImage {
+        margin:0 auto;
         position: relative;
-        top: 40px;
+        top: 116px;
     }
     .awardImage img {
         position: absolute;
