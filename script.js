@@ -42,6 +42,7 @@ cuisineApp.ajaxRequest = function(cID) {
             const { restaurants } = result;
             // Call Display Restaurants Function passing the result variable as an argument
             cuisineApp.displayRestaurants(restaurants);
+            cuisineApp.bookmarkRestaurants(restaurants);
         }).catch((error) => {
             console.log(error);
         });
@@ -57,12 +58,12 @@ cuisineApp.displayRestaurants = function(item) {
             name,
             url,
             location,
-            average_cost_for_two: averageCostForTwo,
             price_range: priceRange,
             user_rating,
             all_reviews_count: reviewCount,
             featured_image: featuredImage,
-            phone_numbers: phoneNumber
+            phone_numbers: phoneNumber,
+            id
         } = restaurant;
 
         const rating = user_rating.aggregate_rating;
@@ -74,7 +75,7 @@ cuisineApp.displayRestaurants = function(item) {
             <li>
                 <div class="itemDetails">
                     <a href="${url}"><img src="${featuredImage}"></a>
-                    <div class="bookmark" id="bookmark">
+                    <div class="bookmark" id="${id}">
                         <i class="fas fa-bookmark"></i>
                     </div>
                     <div class="starRating">
@@ -89,20 +90,40 @@ cuisineApp.displayRestaurants = function(item) {
                 </div>
             </li>
         `;    
-        $displayedRestaurants.append(restaurantDescription);
-
-        // bookmarks.push($('#bookmark'))
-        // console.log(bookmarks);
-
-        // bookmark.on('click', function () {
-        //     console.log(this)
-        //     $(this).toggleClass('saved');
-        //     // bookmarks.push($(this));
-        // });
+        $displayedRestaurants.append(restaurantDescription);         
     });
 }
+cuisineApp.bookmarkRestaurants = function (item) {
+    
+    const bookmarks = Array.from(document.querySelectorAll('.bookmark'));
+    // returns an array of objects
+    console.log(bookmarks);
+    
+    const saved = [];
+    
+    bookmarks.forEach(function (bookmark) {
+        $(bookmark).on('click', function () {
+            if ($(this).hasClass('saved')) {
+                $(this).removeClass('saved');
+                checkForSameValue();
+            }
+            else {
+                $(this).addClass('saved');
+                saved.push($(this).attr('id'));
+            }
+            console.log(saved);
+        })
 
-const bookmarks = [];
+        const checkForSameValue = function() {
+            saved.filter(function(value) {
+                console.log(value);
+                // console.log($(bookmark).attr('id'));
+                return value == $(bookmark).attr('id');
+            });
+        }
+    });
+
+}
 
 
 // Start init app by calling cuisine button event function
