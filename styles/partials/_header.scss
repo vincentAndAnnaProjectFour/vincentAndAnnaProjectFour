@@ -27,6 +27,66 @@ header {
         position: relative;
         top: 124px;
     }
+    .loginButton,
+    .signUpButton,  
+    .signOutButton {
+        z-index: 20;
+        position: absolute;
+        top: 0;
+    }
+    .loginButton {
+        right: 20%;
+    }
+    .signUpButton,
+    .signOutButton {
+        right: 0;
+    }
+    .signOutButton {
+        display: none;
+    }
+    .loginModal,
+    .signUpModal {
+        display: none;
+        position: fixed;
+        z-index: 10;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -40%);
+        overflow: auto;
+        background-color: rgba(255, 255, 255, 0.9);
+        border: 10px black solid;
+        border-radius: 25px;
+        -webkit-animation: fade 1s linear;
+                animation: fade 1s linear;
+    }
+    .showLoginModal,
+    .showSignUpModal {
+        display: block;
+    }
+    .login.modal,
+    .signUp.modal {
+        width: 800px;
+        margin: 0 auto;
+    }
+    .modalContent {
+        text-align: center;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        overflow: hidden;
+    }
+    .close {
+      text-align: right;
+      position: absolute;
+      right: 10px;
+    }
     .awardImage img {
         position: absolute;
         top:20px;
