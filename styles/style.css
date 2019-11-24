@@ -432,12 +432,14 @@ main {
       border: 6px solid #FFBC0D; }
       .cuisineButtons a:hover {
         border: 6px solid transparent; }
-  .restaurantOptions li {
-    width: calc((100% - 40px) / 2); }
-  .restaurantOptions li:nth-child(3n - 1) {
-    margin: 0px 0px; }
-  .restaurantOptions li:nth-child(2n - 1) {
-    margin-right: 40px; } }
+  .restaurantOptions {
+    padding: 50px 40px 0px; }
+    .restaurantOptions li {
+      width: calc((100% - 40px) / 2); }
+    .restaurantOptions li:nth-child(3n - 1) {
+      margin: 0px 0px; }
+    .restaurantOptions li:nth-child(2n - 1) {
+      margin-right: 40px; } }
 
 @media (max-width: 1080px) {
   .cuisineButtons {
@@ -458,12 +460,14 @@ main {
       border: 2px solid #FFBC0D; }
       .cuisineButtons a:hover {
         border: 2px solid transparent; }
-  .restaurantOptions li {
-    width: calc((100% - 20px) / 2); }
-  .restaurantOptions li:nth-child(2n - 1) {
-    margin-right: 20px; }
-  .restaurantOptions .itemDetails {
-    margin-bottom: 20px; } }
+  .restaurantOptions {
+    padding: 50px 20px 0px; }
+    .restaurantOptions li {
+      width: calc((100% - 20px) / 2); }
+    .restaurantOptions li:nth-child(2n - 1) {
+      margin-right: 20px; }
+    .restaurantOptions .itemDetails {
+      margin-bottom: 20px; } }
 
 @media (max-width: 785px) {
   .cuisineButtons ul {
