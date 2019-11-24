@@ -338,7 +338,7 @@ main {
     margin: 10px 0px; }
 
 .restaurantOptions {
-  padding: 50px;
+  padding: 50px 50px 100px;
   position: relative; }
   .restaurantOptions ul {
     display: -webkit-box;
@@ -413,15 +413,54 @@ main {
       padding: 5px; }
 
 .preloader {
+  display: none;
   position: absolute;
-  width: 100px;
-  height: 100px;
-  top: 0px;
-  left: calc(50% - 50px);
-  background-image: url(https://raw.githubusercontent.com/niklausgerber/PreLoadMe/master/img/status.gif);
-  background-repeat: no-repeat;
-  background-position: center;
-  display: none; }
+  width: 80px;
+  height: 80px;
+  left: calc(50% - 40px);
+  top: 0; }
+
+.preloader div {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #BA0018;
+  border-radius: 50%;
+  -webkit-animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #BA0018 transparent transparent transparent; }
+
+.preloader div:nth-child(1) {
+  -webkit-animation-delay: -0.45s;
+  animation-delay: -0.45s; }
+
+.preloader div:nth-child(2) {
+  -webkit-animation-delay: -0.3s;
+  animation-delay: -0.3s; }
+
+.preloader div:nth-child(3) {
+  -webkit-animation-delay: -0.15s;
+  animation-delay: -0.15s; }
+
+@-webkit-keyframes lds-ring {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@keyframes lds-ring {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
 
 @media (max-width: 1210px) {
   .cuisineButtons {
@@ -433,7 +472,7 @@ main {
       .cuisineButtons a:hover {
         border: 6px solid transparent; }
   .restaurantOptions {
-    padding: 50px 40px 50px; }
+    padding: 50px 40px 100px; }
     .restaurantOptions li {
       width: calc((100% - 40px) / 2); }
     .restaurantOptions li:nth-child(3n - 1) {
@@ -461,7 +500,7 @@ main {
       .cuisineButtons a:hover {
         border: 2px solid transparent; }
   .restaurantOptions {
-    padding: 50px 20px 50px; }
+    padding: 50px 20px 100px; }
     .restaurantOptions li {
       width: calc((100% - 20px) / 2); }
     .restaurantOptions li:nth-child(2n - 1) {
