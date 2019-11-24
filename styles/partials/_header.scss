@@ -25,13 +25,101 @@ header {
     .headerImage {
         margin:0 auto;
         position: relative;
-        top: 116px;
+        top: 124px;
     }
     .awardImage img {
         position: absolute;
-        top:0;
+        top:20px;
         right:0;
-        width: 300px;
+        width: 200px;
+        // add css shine?
+    }
+    .awardText {
+        margin-top: -10px;
+        display:none;
     }
 }
+
+// MEDIA QUERIES
+@media (max-width:1500px) {
+    header {
+        .headerImage {
+            top: 120px;
+        }
+    }
+}
+
+@media (max-width:1400px) {
+    header {
+        .headerImage {
+            top: 116px;
+        }
+    }
+}
+
+@media (max-width:1200px) {
+    header {
+        .headerImage {
+            top: 112px;
+        }
+    }
+}
+
+@media (max-width:1100px) {
+    header {
+        .headerImage {
+            top: 108px;
+        }
+    }
+}
+
+@media (max-width:1000px) {
+    header {
+        .headerImage {
+            top: 104px;
+        }
+    }
+}
+
+@media (max-width:900px) {
+    header {
+        .headerImage {
+            top: 100px;
+        }
+    }
+}
+
+@media (max-width:800px) {
+    header {
+        .headerImage {
+            top: 96px;
+        }
+        .awardImage img {
+            width: 150px;
+        }
+    }
+}
+
+@media (max-width:600px) {
+    header {
+        .headerImage {
+            top: 92px;
+        }
+        .awardImage img {
+            display:none;
+        }
+        .awardText {
+            display:block;
+        }
+    }
+}
+
+@media (max-width:400px) {
+    header {
+        .headerImage {
+            top: 88px;
+        }
+    }
+}
+
 // HEADER CONTENT ENDS HERE

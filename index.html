@@ -16,9 +16,10 @@
         <div class="wrapper">
             <div class="headerOverlay">
                 <h1><span>TO</span>eats</h1>
+                <p class="awardText">Voted Best Food Recommendation Site</p>
             </div>
             <div class="headerImage">
-                <img src="assets/headerImage.png">
+                <img src="assets/headerImage5.png">
             </div>
             <div class="awardImage">
                 <img src="assets/bestChoice.png">
@@ -38,10 +39,22 @@
                     <li><a id="227" href="#restaurantOptions"><img src="assets/barFood.png" alt=""></a><p>Bar Food</p></li>
                     <li><a id="30" href="#restaurantOptions"><img src="assets/cafeFood.png" alt=""></a><p>Cafe</p></li>
                 </ul>
+                <form action="submit">
+                    <!-- <label for="cuisines" class="visuallyhidden">Select list</label> -->
+                    <select name="cuisines">
+                        <option selected disabled>Cuisines</option>
+                        <option id="381" value="canadianFood">Canadian</option>
+                        <option id="3" value="asianFood">Asian</option>
+                        <option id="227" value="barFood">Bar Food</option>
+                        <option id="30" value="cafeFood">Cafe</option>
+                    </select>
+                </form>
             </section>
             <!-- CUISINE BUTTONS CONTENT ENDS HERE -->
             <!-- RESTAURANT OPTIONS CONTENT STARTS HERE -->
             <section id="restaurantOptions" class="restaurantOptions">
+                <div class="preloader">
+                </div>
                 <ul id="displayedRestaurants">
     
                 </ul>

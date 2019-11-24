@@ -14,6 +14,7 @@ cuisineApp.cuisineButtonEvent = function () {
 
     cuisineButtons.forEach(function (button) {
         $(button).on('click', function () {
+            $('.preloader').toggle();
             if ($('#displayedRestaurants li').length >= 1) {
                 $('#displayedRestaurants').empty();
                 const cuisineID = $(button).attr('id');
@@ -26,6 +27,35 @@ cuisineApp.cuisineButtonEvent = function () {
         });
     });
 }
+
+// SELECTING CUISINE VIA FORM ELEMENT
+cuisineApp.cuisineSelectEvent = function () {
+
+    // Generate variable to store cuisine id 
+    const cuisineForm = Array.from($('form').find('select'));
+    const cuisineSelection = Array.from($('form').find('option'));
+    // console.log(cuisineSelection);
+
+    $(cuisineForm).on('change', function () {
+        const option = $(this).children(':selected').attr('id');
+        $('.preloader').toggle();
+        cuisineSelection.forEach(function (selection) {
+            if ($('#displayedRestaurants li').length >= 1) {
+                $('#displayedRestaurants').empty();
+                const cuisineID = option;
+                // console.log(cuisineID)
+                cuisineApp.ajaxRequest(cuisineID);
+            }
+            else {
+                const cuisineID = option;
+                // console.log(cuisineID)
+                cuisineApp.ajaxRequest(cuisineID);
+            }
+        });
+    });
+}
+
+
 // AJAX Request Function determines what to search for based on user’s choice for cuisine
 cuisineApp.ajaxRequest = function (cID) {
 
@@ -90,6 +120,8 @@ cuisineApp.displayRestaurants = function (item) {
                 </div>
             </li>
         `;
+
+        $('.preloader').fadeOut();
         $displayedRestaurants.append(restaurantDescription);
 
 
@@ -158,6 +190,7 @@ $(window).scroll(function () {
 // Start init app by calling cuisine button event function
 cuisineApp.init = function () {
     cuisineApp.cuisineButtonEvent();
+    cuisineApp.cuisineSelectEvent();
 }
 
 // Create document ready to call app init function

@@ -207,6 +207,10 @@ p {
   background: #BA0018;
   color: #FFFFFF; }
 
+@media (max-width: 475px) {
+  html {
+    font-size: 100%; } }
+
 header {
   background: #ba0018; }
   header .wrapper {
@@ -228,19 +232,65 @@ header {
   header .headerImage {
     margin: 0 auto;
     position: relative;
-    top: 116px; }
+    top: 124px; }
   header .awardImage img {
     position: absolute;
-    top: 0;
+    top: 20px;
     right: 0;
-    width: 300px; }
+    width: 200px; }
+  header .awardText {
+    margin-top: -10px;
+    display: none; }
+
+@media (max-width: 1500px) {
+  header .headerImage {
+    top: 120px; } }
+
+@media (max-width: 1400px) {
+  header .headerImage {
+    top: 116px; } }
+
+@media (max-width: 1200px) {
+  header .headerImage {
+    top: 112px; } }
+
+@media (max-width: 1100px) {
+  header .headerImage {
+    top: 108px; } }
+
+@media (max-width: 1000px) {
+  header .headerImage {
+    top: 104px; } }
+
+@media (max-width: 900px) {
+  header .headerImage {
+    top: 100px; } }
+
+@media (max-width: 800px) {
+  header .headerImage {
+    top: 96px; }
+  header .awardImage img {
+    width: 150px; } }
+
+@media (max-width: 600px) {
+  header .headerImage {
+    top: 92px; }
+  header .awardImage img {
+    display: none; }
+  header .awardText {
+    display: block; } }
+
+@media (max-width: 400px) {
+  header .headerImage {
+    top: 88px; } }
 
 main {
   background: #ba0018;
   padding: 0px 0px 60px 0px; }
   main .wrapper {
     background: #fafafa;
-    border-radius: 25px; }
+    border-radius: 25px;
+    padding-top: 20px; }
 
 .cuisineButtons {
   padding: 50px 50px 0px; }
@@ -252,7 +302,7 @@ main {
     flex-wrap: wrap;
     -ms-flex-pack: distribute;
     justify-content: space-around;
-    padding-top: 20px; }
+    padding: 20px 0px; }
   .cuisineButtons li {
     width: calc(100% / 4);
     text-align: center; }
@@ -265,21 +315,31 @@ main {
     border: 8px solid #FFBC0D; }
     .cuisineButtons a:hover {
       border: 8px solid transparent; }
-    .cuisineButtons a img {
-      -o-object-fit: cover;
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-      -webkit-transition: all 1s;
-      -o-transition: all 1s;
-      transition: all 1s; }
-      .cuisineButtons a img:hover {
-        -webkit-transform: scale(1.2);
-        -ms-transform: scale(1.2);
-        transform: scale(1.2); }
+  .cuisineButtons img {
+    -o-object-fit: cover;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s; }
+    .cuisineButtons img:hover {
+      -webkit-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      transform: scale(1.2); }
+  .cuisineButtons form {
+    display: none; }
+  .cuisineButtons select {
+    width: 100%;
+    border-radius: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    font-weight: bold;
+    margin: 10px 0px; }
 
 .restaurantOptions {
-  padding: 50px; }
+  padding: 50px;
+  position: relative; }
   .restaurantOptions ul {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -290,13 +350,14 @@ main {
     -ms-flex-pack: start;
     justify-content: flex-start; }
   .restaurantOptions li {
-    width: calc(100% / 3);
-    padding: 0px 20px; }
+    width: calc((100% - 80px) / 3); }
+  .restaurantOptions li:nth-child(3n - 1) {
+    margin: 0px 40px; }
   .restaurantOptions .itemDetails {
     background: #FFFFFF;
     border: 1px solid rgba(0, 0, 0, 0.2);
     height: 425px;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     position: relative;
     border-radius: 5px;
     overflow: hidden; }
@@ -310,7 +371,8 @@ main {
       top: -1px;
       z-index: 1; }
     .restaurantOptions .itemDetails .bookmark {
-      left: 0; }
+      left: -1px;
+      cursor: pointer; }
     .restaurantOptions .itemDetails .fa-bookmark {
       color: #FFBC0D;
       font-size: 2rem;
@@ -349,6 +411,75 @@ main {
     .restaurantOptions .itemDetails span {
       background: rgba(0, 0, 0, 0.1);
       padding: 5px; }
+
+.preloader {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 0px;
+  left: calc(50% - 50px);
+  background-image: url(https://raw.githubusercontent.com/niklausgerber/PreLoadMe/master/img/status.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+  display: none; }
+
+@media (max-width: 1210px) {
+  .cuisineButtons {
+    padding: 40px 40px 0px; }
+    .cuisineButtons a {
+      width: 180px;
+      height: 180px;
+      border: 6px solid #FFBC0D; }
+      .cuisineButtons a:hover {
+        border: 6px solid transparent; }
+  .restaurantOptions li {
+    width: calc((100% - 40px) / 2); }
+  .restaurantOptions li:nth-child(3n - 1) {
+    margin: 0px 0px; }
+  .restaurantOptions li:nth-child(2n - 1) {
+    margin-right: 40px; } }
+
+@media (max-width: 1080px) {
+  .cuisineButtons {
+    padding: 30px 30px 0px; }
+    .cuisineButtons a {
+      width: 160px;
+      height: 160px;
+      border: 4px solid #FFBC0D; }
+      .cuisineButtons a:hover {
+        border: 4px solid transparent; } }
+
+@media (max-width: 900px) {
+  .cuisineButtons {
+    padding: 20px 20px 0px; }
+    .cuisineButtons a {
+      width: 140px;
+      height: 140px;
+      border: 2px solid #FFBC0D; }
+      .cuisineButtons a:hover {
+        border: 2px solid transparent; }
+  .restaurantOptions li {
+    width: calc((100% - 20px) / 2); }
+  .restaurantOptions li:nth-child(2n - 1) {
+    margin-right: 20px; }
+  .restaurantOptions .itemDetails {
+    margin-bottom: 20px; } }
+
+@media (max-width: 785px) {
+  .cuisineButtons ul {
+    display: none; }
+  .cuisineButtons form {
+    display: block; }
+  .restaurantOptions li {
+    width: 100%; }
+  .restaurantOptions li:nth-child(2n - 1) {
+    margin-right: 0px; }
+  .restaurantOptions .itemDetails {
+    height: 400px; } }
+
+@media (max-width: 475px) {
+  .restaurantOptions .itemDetails {
+    height: 425px; } }
 
 footer {
   background: #ba0018;

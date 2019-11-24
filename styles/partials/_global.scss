@@ -89,4 +89,12 @@ p {
     background: $secondaryColour;
     color: $primaryColour; 
 }
+
+
+// MEDIA QUERIES
+@media (max-width:475px) {
+    html {
+        font-size:100%;
+    }
+}
 // GLOBAL STYLES ENDS HERE
