@@ -4,6 +4,135 @@ header {
     .wrapper {
         position: relative;
     }
+    .snowEffect {
+        overflow: hidden;
+    }
+    .snowflake {
+        position: absolute;
+        color: white;
+        font-size: 60px;
+        z-index: 100;
+    }
+
+    .snowflake1 {
+        animation: snow 5s linear infinite;
+        left: 5%;
+    }
+
+    .snowflake2 {
+        animation: snow2 4s ease-in infinite;
+        left: 50%;
+        font-size: 30px;
+    }
+
+    .snowflake3 {
+        animation: snow3 5s ease-out infinite;
+        left: 35%;
+    }
+
+    .snowflake4 {
+        font-size: 90px;
+        left: 85%;
+        animation: snow4 6s ease-out infinite;
+    }
+
+    .snowflake5 {
+        left: 90%;
+        animation: snow5 7s ease-out infinite;
+    }
+
+    @keyframes snow {
+        0% {
+            top: 0;
+        }
+
+        10%, 50%, 90% {
+            left: 7%;
+        }
+
+        30%, 70% {
+            left: 3%;
+        }
+
+        100% {
+            top: 85%;
+        }
+    }
+
+    @keyframes snow2 {
+        0% {
+            top: 0;
+        }
+
+        15%, 55%, 95% {
+            left: 48%;
+        }
+
+        35%, 75% {
+            left: 57%;
+        }
+
+        100% {
+            top: 85%;
+        }
+    }
+
+    @keyframes snow3 {
+        0% {
+            top: 0;
+        }
+
+        15%, 55%, 95% {
+            left: 30%;
+        }
+
+        35%, 75% {
+            left: 40%;
+        }
+
+        100% {
+            top: 85%;
+        }
+    }
+
+    @keyframes snow4 {
+        0% {
+            top: 0;
+        }
+
+        10%, 30%, 50%, 70%, 90% {
+            left: 78%;
+
+        }
+
+        20%, 40%, 60%, 80% {
+            left: 82%;
+        }
+
+        100% {
+            top: 85%;
+        }
+    }
+
+
+    @keyframes snow5 {
+        0% {
+            top: 0;
+        }
+
+        10%, 30%, 50%, 70%, 90% {
+            left: 88%;
+
+        }
+
+        20%, 40%, 60%, 80% {
+            left: 95%;
+        }
+
+        100% {
+            top: 85%;
+        }
+    }
     .headerOverlay {
         position: absolute;
         top:0;

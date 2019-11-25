@@ -180,7 +180,141 @@ p {
 header {
   background: #E91431; }
   header .wrapper {
+<<<<<<< Updated upstream
     position: relative; }
+=======
+    position: relative;
+    padding-bottom: 80px; }
+  header .snowEffect {
+    overflow: hidden; }
+  header .snowflake {
+    position: absolute;
+    color: white;
+    font-size: 60px;
+    z-index: 100; }
+  header .snowflake1 {
+    -webkit-animation: snow 5s linear infinite;
+    animation: snow 5s linear infinite;
+    left: 5%; }
+  header .snowflake2 {
+    -webkit-animation: snow2 4s ease-in infinite;
+    animation: snow2 4s ease-in infinite;
+    left: 50%;
+    font-size: 30px; }
+  header .snowflake3 {
+    -webkit-animation: snow3 5s ease-out infinite;
+    animation: snow3 5s ease-out infinite;
+    left: 35%; }
+  header .snowflake4 {
+    font-size: 90px;
+    left: 85%;
+    -webkit-animation: snow4 6s ease-out infinite;
+    animation: snow4 6s ease-out infinite; }
+  header .snowflake5 {
+    left: 90%;
+    -webkit-animation: snow5 7s ease-out infinite;
+    animation: snow5 7s ease-out infinite; }
+
+@-webkit-keyframes snow {
+  0% {
+    top: 0; }
+  10%, 50%, 90% {
+    left: 7%; }
+  30%, 70% {
+    left: 3%; }
+  100% {
+    top: 85%; } }
+
+@keyframes snow {
+  0% {
+    top: 0; }
+  10%, 50%, 90% {
+    left: 7%; }
+  30%, 70% {
+    left: 3%; }
+  100% {
+    top: 85%; } }
+
+@-webkit-keyframes snow2 {
+  0% {
+    top: 0; }
+  15%, 55%, 95% {
+    left: 48%; }
+  35%, 75% {
+    left: 57%; }
+  100% {
+    top: 85%; } }
+
+@keyframes snow2 {
+  0% {
+    top: 0; }
+  15%, 55%, 95% {
+    left: 48%; }
+  35%, 75% {
+    left: 57%; }
+  100% {
+    top: 85%; } }
+
+@-webkit-keyframes snow3 {
+  0% {
+    top: 0; }
+  15%, 55%, 95% {
+    left: 30%; }
+  35%, 75% {
+    left: 40%; }
+  100% {
+    top: 85%; } }
+
+@keyframes snow3 {
+  0% {
+    top: 0; }
+  15%, 55%, 95% {
+    left: 30%; }
+  35%, 75% {
+    left: 40%; }
+  100% {
+    top: 85%; } }
+
+@-webkit-keyframes snow4 {
+  0% {
+    top: 0; }
+  10%, 30%, 50%, 70%, 90% {
+    left: 78%; }
+  20%, 40%, 60%, 80% {
+    left: 82%; }
+  100% {
+    top: 85%; } }
+
+@keyframes snow4 {
+  0% {
+    top: 0; }
+  10%, 30%, 50%, 70%, 90% {
+    left: 78%; }
+  20%, 40%, 60%, 80% {
+    left: 82%; }
+  100% {
+    top: 85%; } }
+
+@-webkit-keyframes snow5 {
+  0% {
+    top: 0; }
+  10%, 30%, 50%, 70%, 90% {
+    left: 88%; }
+  20%, 40%, 60%, 80% {
+    left: 95%; }
+  100% {
+    top: 85%; } }
+
+@keyframes snow5 {
+  0% {
+    top: 0; }
+  10%, 30%, 50%, 70%, 90% {
+    left: 88%; }
+  20%, 40%, 60%, 80% {
+    left: 95%; }
+  100% {
+    top: 85%; } }
+>>>>>>> Stashed changes
   header .headerOverlay {
     position: absolute;
     top: 0;
@@ -253,8 +387,14 @@ header {
     right: 10px; }
 
 main {
+<<<<<<< Updated upstream
   background: #FFFFFF;
   padding: 0px 0px 60px 0px; }
+=======
+  background: #ba0018;
+  padding: 0px 0px 60px 0px;
+  z-index: 120; }
+>>>>>>> Stashed changes
   main .wrapper {
     margin-top: 80px;
     background: rgba(0, 0, 0, 0.1);
@@ -296,9 +436,16 @@ main {
         -ms-transform: scale(1.2);
         transform: scale(1.2); }
 
+<<<<<<< Updated upstream
 .restaurantOptions {
   padding: 50px; }
   .restaurantOptions ul {
+=======
+.restaurantOptions, .bookmarkSection {
+  padding: 50px 50px 100px;
+  position: relative; }
+  .restaurantOptions ul, .bookmarkSection ul {
+>>>>>>> Stashed changes
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -307,25 +454,34 @@ main {
     -webkit-box-pack: start;
     -ms-flex-pack: start;
     justify-content: flex-start; }
+<<<<<<< Updated upstream
   .restaurantOptions li {
     width: calc(100% / 3);
     padding: 0px 20px; }
   .restaurantOptions .itemDetails {
+=======
+  .restaurantOptions li, .bookmarkSection li {
+    width: calc((100% - 80px) / 3); }
+  .restaurantOptions li:nth-child(3n - 1), .bookmarkSection li:nth-child(3n - 1) {
+    margin: 0px 40px; }
+  .restaurantOptions .itemDetails, .bookmarkSection .itemDetails {
+>>>>>>> Stashed changes
     background: #FFFFFF;
     height: 400px;
     margin-bottom: 50px;
     position: relative;
     border-radius: 5px;
     overflow: hidden; }
-    .restaurantOptions .itemDetails img {
+    .restaurantOptions .itemDetails img, .bookmarkSection .itemDetails img {
       height: 200px;
       -o-object-fit: cover;
       object-fit: cover;
       border-radius: 5px; }
-    .restaurantOptions .itemDetails .bookmark, .restaurantOptions .itemDetails .starRating {
+    .restaurantOptions .itemDetails .bookmark, .bookmarkSection .itemDetails .bookmark, .restaurantOptions .itemDetails .starRating, .bookmarkSection .itemDetails .starRating {
       position: absolute;
       top: 0;
       z-index: 1; }
+<<<<<<< Updated upstream
     .restaurantOptions .itemDetails .bookmark {
       left: 0;
       -webkit-transition: all 1s;
@@ -344,27 +500,179 @@ main {
       font-size: 2rem; }
     .restaurantOptions .itemDetails .starRating {
       background: #E91431;
+=======
+    .restaurantOptions .itemDetails .bookmark, .bookmarkSection .itemDetails .bookmark {
+      left: -1px;
+      cursor: pointer; }
+    .restaurantOptions .itemDetails .fa-bookmark, .bookmarkSection .itemDetails .fa-bookmark {
+      color: #FFBC0D;
+      font-size: 2rem;
+      -webkit-transition: all 1s;
+      -o-transition: all 1s;
+      transition: all 1s; }
+      .restaurantOptions .itemDetails .fa-bookmark:hover, .bookmarkSection .itemDetails .fa-bookmark:hover {
+        -webkit-transform: scaleY(2);
+        -ms-transform: scaleY(2);
+        transform: scaleY(2); }
+    .restaurantOptions .itemDetails .fa-bookmark.saved, .bookmarkSection .itemDetails .fa-bookmark.saved {
+      -webkit-transform: scaleY(2);
+      -ms-transform: scaleY(2);
+      transform: scaleY(2); }
+    .restaurantOptions .itemDetails .starRating, .bookmarkSection .itemDetails .starRating {
+      background: #BA0018;
+>>>>>>> Stashed changes
       right: 0;
       padding: 15px 25px;
       border-radius: 0px 0px 0px 5px; }
-      .restaurantOptions .itemDetails .starRating p {
+      .restaurantOptions .itemDetails .starRating p, .bookmarkSection .itemDetails .starRating p {
         position: absolute;
         top: 5px;
         right: 15px;
         z-index: 2;
         color: #FFFFFF; }
-    .restaurantOptions .itemDetails .fa-star {
+    .restaurantOptions .itemDetails .fa-star, .bookmarkSection .itemDetails .fa-star {
       position: absolute;
+<<<<<<< Updated upstream
       color: #FFBC0D;
       right: 5px;
       font-size: 2.1rem;
       text-shadow: 2px 2px 1px #000000; }
     .restaurantOptions .itemDetails .description {
+=======
+      color: #FFFFFF;
+      top: 10px;
+      right: 3.5px;
+      font-size: 1rem; }
+    .restaurantOptions .itemDetails .description, .bookmarkSection .itemDetails .description {
+>>>>>>> Stashed changes
       padding: 20px; }
-      .restaurantOptions .itemDetails .description p {
+      .restaurantOptions .itemDetails .description p, .bookmarkSection .itemDetails .description p {
         opacity: 50%; }
-    .restaurantOptions .itemDetails .address {
+    .restaurantOptions .itemDetails .address, .bookmarkSection .itemDetails .address {
       text-transform: uppercase; }
+<<<<<<< Updated upstream
+=======
+    .restaurantOptions .itemDetails .priceAndReviews, .bookmarkSection .itemDetails .priceAndReviews {
+      margin-top: 10px; }
+    .restaurantOptions .itemDetails span, .bookmarkSection .itemDetails span {
+      background: rgba(0, 0, 0, 0.1);
+      padding: 5px; }
+
+.bookmarkSection {
+  display: none; }
+
+.preloader {
+  display: none;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  left: calc(50% - 40px);
+  top: 0; }
+
+.preloader div {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #BA0018;
+  border-radius: 50%;
+  -webkit-animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #BA0018 transparent transparent transparent; }
+
+.preloader div:nth-child(1) {
+  -webkit-animation-delay: -0.45s;
+  animation-delay: -0.45s; }
+
+.preloader div:nth-child(2) {
+  -webkit-animation-delay: -0.3s;
+  animation-delay: -0.3s; }
+
+.preloader div:nth-child(3) {
+  -webkit-animation-delay: -0.15s;
+  animation-delay: -0.15s; }
+
+@-webkit-keyframes lds-ring {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@keyframes lds-ring {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@media (max-width: 1210px) {
+  .cuisineButtons {
+    padding: 40px 40px 0px; }
+    .cuisineButtons a {
+      width: 180px;
+      height: 180px;
+      border: 6px solid #FFBC0D; }
+      .cuisineButtons a:hover {
+        border: 6px solid transparent; }
+  .restaurantOptions, .bookmarkSection {
+    padding: 50px 40px 100px; }
+    .restaurantOptions li, .bookmarkSection li {
+      width: calc((100% - 40px) / 2); }
+    .restaurantOptions li:nth-child(3n - 1), .bookmarkSection li:nth-child(3n - 1) {
+      margin: 0px 0px; }
+    .restaurantOptions li:nth-child(2n - 1), .bookmarkSection li:nth-child(2n - 1) {
+      margin-right: 40px; } }
+
+@media (max-width: 1080px) {
+  .cuisineButtons {
+    padding: 30px 30px 0px; }
+    .cuisineButtons a {
+      width: 160px;
+      height: 160px;
+      border: 4px solid #FFBC0D; }
+      .cuisineButtons a:hover {
+        border: 4px solid transparent; } }
+
+@media (max-width: 900px) {
+  .cuisineButtons {
+    padding: 20px 20px 0px; }
+    .cuisineButtons a {
+      width: 140px;
+      height: 140px;
+      border: 2px solid #FFBC0D; }
+      .cuisineButtons a:hover {
+        border: 2px solid transparent; }
+  .restaurantOptions, .bookmarkSection {
+    padding: 50px 20px 100px; }
+    .restaurantOptions li, .bookmarkSection li {
+      width: calc((100% - 20px) / 2); }
+    .restaurantOptions li:nth-child(2n - 1), .bookmarkSection li:nth-child(2n - 1) {
+      margin-right: 20px; }
+    .restaurantOptions .itemDetails, .bookmarkSection .itemDetails {
+      margin-bottom: 20px; } }
+
+@media (max-width: 785px) {
+  .cuisineButtons ul {
+    display: none; }
+  .cuisineButtons form {
+    display: block; }
+  .restaurantOptions li, .bookmarkSection li {
+    width: 100%; }
+  .restaurantOptions li:nth-child(2n - 1), .bookmarkSection li:nth-child(2n - 1) {
+    margin-right: 0px; }
+  .restaurantOptions .itemDetails, .bookmarkSection .itemDetails {
+    height: 400px; } }
+
+@media (max-width: 475px) {
+  .restaurantOptions .itemDetails, .bookmarkSection .itemDetails {
+    height: 425px; } }
+>>>>>>> Stashed changes
 
 footer {
   background: #FFFFFF;
