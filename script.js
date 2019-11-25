@@ -22,6 +22,7 @@ cuisineApp.buttonEvent = function () {
     const $loginButton = $('#login');
     const $signUpButton = $('#signUp');
     const $signOutButton = $('#signOut');
+    const $bookmarksButton = $('#bookmarks');
     const $closeModal = $('.close');
     const $signUpModal = $('#signUpModal');
     const $loginModal = $('#loginModal');
@@ -82,6 +83,7 @@ cuisineApp.buttonEvent = function () {
                     if (user) {
                         console.log('signed in');
                         $signOutButton.css('display', 'block');
+                        $bookmarksButton.css('display', 'block');
                         $signUpButton.css('display', 'none');
                         $loginButton.css('display', 'none');
                         $signUpModal.removeClass('showSignUpModal');
@@ -93,10 +95,18 @@ cuisineApp.buttonEvent = function () {
                 });
             }
             else if ($signUpPassword.val() !== $confirmPassword.val()) {
-                alert('Error, your passwords do not match!');
+                swal.fire(
+                    "Error",
+                    "Your passwords do not match.",
+                    "error");
+                // alert('Error, your passwords do not match!');
             }
             else if (($signUpEmailAddress.val() === "") || ($signUpPassword.val() === "") || ($confirmPassword.val() === "")) {
-                alert('Error, you are missing an input field!');
+                swal.fire(
+                    "Error",
+                    "You are missing an input field!",
+                    "error");
+                // alert('Error, you are missing an input field!');
             }
         });
     });
@@ -125,7 +135,9 @@ cuisineApp.buttonEvent = function () {
                 firebase.auth().onAuthStateChanged(function (user) {
                     if (user) {
                         console.log('signed in');
+                        cuisineApp.bookmarkAjaxRequest();
                         $signOutButton.css('display', 'block');
+                        $bookmarksButton.css('display', 'block');
                         $loginButton.css('display', 'none');
                         $signUpButton.css('display', 'none');
                         $loginModal.removeClass('showLoginModal');
@@ -154,7 +166,11 @@ cuisineApp.buttonEvent = function () {
                 // });
             }
             else if (($loginEmailAddress.val() === "") || ($loginPassword.val() === "")) {
-                alert('Error, you have entered an incorrect email address or password!');
+                swal.fire(
+                    "Error",
+                    "You have entered an incorrect email address or password.",
+                    "error");
+                // alert('Error, you have entered an incorrect email address or password!');
             }
         });
     });
@@ -229,6 +245,93 @@ cuisineApp.ajaxRequest = function (cID) {
     });
 }
 
+cuisineApp.bookmarkAjaxRequest = function () {
+    const dbRef = firebase.database().ref();
+    // AJAX Function will get info from URL based on argument passed
+    function getRestaurant(restaurantID) {
+        return $.ajax({
+            url: `https://developers.zomato.com/api/v2.1/restaurant?res_id=${restaurantID}`,
+            method: 'GET',
+            dataType: 'json',
+            headers: {
+                'user-key': cuisineApp.key
+            }
+        })
+    }
+    dbRef.on('value', (data) => {
+        const bookmarkData = data.val();
+        // console.log(bookmarkData);
+        const savedBookmarkList = [];
+        bookmarkData.bookmarks.forEach((item) => {
+            savedBookmarkList.push(getRestaurant(item));
+        });
+        $.when(...savedBookmarkList)
+            .then((...bookmarkedRestaurant) => {
+                const restaurantDetail = bookmarkedRestaurant.map((result) => {
+                    return result[0];
+                });
+                restaurantDetail.forEach((item) => {
+                    // console.log(restaurantDetail);
+                    cuisineApp.displayBookmarkedRestaurants(item);
+                });
+            });
+    });
+}
+
+cuisineApp.displayBookmarkedRestaurants = function (restaurant) {
+    const {
+        name,
+        url,
+        location,
+        price_range: priceRange,
+        user_rating,
+        all_reviews_count: reviewCount,
+        featured_image: featuredImage,
+        phone_numbers: phoneNumber,
+        id
+    } = restaurant;
+    const rating = user_rating.aggregate_rating;
+    const address = location.address;
+    const $displayedBookmarks = $('#displayedBookmarks');
+    const $bookmarkSection = $('#bookmarkSection');
+    // 	Append the DOM with the variables in containers
+    const restaurantDescription = `
+        <li>
+            <div class="itemDetails">
+                <a href="${url}"><img src="${featuredImage}"></a>
+                <div class="bookmark" id="${id}">
+                    <i class="fas fa-bookmark saved"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="starRating">
+                    <p>${rating}</p>
+                </div>
+                <div class="description">
+                    <h3>${name}</h3>
+                    <p class="address">${address}</p>
+                    <p class="phoneNumber">${phoneNumber}</p>
+                    <p class="priceAndReviews"><span class="price">${priceRange}</span> <span class="reviews">${reviewCount} Reviews</span></p>
+                </div>
+            </div>
+        </li>
+    `;
+    $('.preloader').fadeOut();
+    $bookmarkSection.css('display', 'block');
+    $displayedBookmarks.append(restaurantDescription);
+    //Function to replace represent price in dollar signs instead of number
+    const prices = $('.price');
+    const dollarSigns = '$'
+    const priceInDollars = prices.map(function () {
+        const priceInNumbers = parseInt($(this).text());
+        $(this).replaceWith(`<span>${dollarSigns.repeat(priceInNumbers)}</span>`);
+    })
+    //Shorten phone number
+    const phoneNumbers = $('.phoneNumber');
+    const shortenedPhoneNumbers = phoneNumbers.map(function () {
+        const newString = $(this).text().replace('+1 ', '');
+        $(this).replaceWith(`<p>${newString}</p>`);
+    })
+}
 
 // Display Restaurants Function collected from AJAX request
 cuisineApp.displayRestaurants = function (item) {

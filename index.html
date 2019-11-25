@@ -21,14 +21,16 @@
             <div class="headerImage">
                 <img src="assets/headerImage5.png">
             </div>
-            <button id="login" class="loginButton">Login</button>
-            <button id="signUp" class="signUpButton">Sign Up</button>
-            <button id="signOut" class="signOutButton">Sign Out</button>
+            <div class="buttons">
+                <button id="login" class="loginButton">Log In</button>
+                <button id="signUp" class="signUpButton">Sign Up</button>
+                <button id="signOut" class="signOutButton">Sign Out</button>
+            </div>
             <div id="signUpModal" class="signUpModal">
                 <div class="modalContent">
                     <div class="close"><i class="fas fa-times"></i></div>
-                    <h2 class="title">Sign Up</h2>
-                    <p>Enter an email address and password</p>
+                    <h2>Let's get started.</h2>
+                    <p>Enter your email address and password.</p>
                     <form id="signUpForm">
                         <label class="visuallyHidden" for="signUpEmailAddress">Your Email Address:</label>
                         <input id="signUpEmailAddress" type="email" class="emailAddress" placeholder="Email Address" />
@@ -36,21 +38,21 @@
                         <input id="signUpPassword" type="password" class="password" placeholder="Password" />
                         <label class="visuallyHidden" for="confirmPassword">Confirm Password:</label>
                         <input id="confirmPassword" type="password" class="password" placeholder="Confirm Password" />
-                        <input type="submit" value="Submit" />
+                        <input type="submit" value="Sign Up" />
                     </form>
                 </div>
             </div>
             <div id="loginModal" class="loginModal">
                 <div class="modalContent">
                     <div class="close"><i class="fas fa-times"></i></div>
-                    <h2 class="title">Login</h2>
-                    <p>Enter your email address and password</p>
+                    <h2>Welcome back</h2>
+                    <p>Sign in with your email address and password.</p>
                     <form id="loginForm">
                         <label class="visuallyHidden" for="emailAddress">Your Email Address:</label>
                         <input id="loginEmailAddress" type="email" class="emailAddress" placeholder="Email Address" />
                         <label class="visuallyHidden" for="password">Your Password:</label>
                         <input id="loginPassword" type="password" class="password" placeholder="Password" />
-                        <input type="submit" value="Submit" />
+                        <input type="submit" value="Log In" />
                     </form>
                 </div>
             </div>
@@ -63,6 +65,19 @@
     <!-- MAIN CONTENT STARTS HERE -->
     <main>
         <div class="wrapper">
+            <section id="bookmarkSection" class="bookmarkSection">
+                <h2>Bookmarked Restaurants</h2>
+                <!-- <div class="preloader"> -->
+                <!-- </div> -->
+                <div class="preloader">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <ul id="displayedBookmarks">
+                </ul>
+            </section>
             <!-- CUISINE BUTTONS CONTENT STARTS HERE -->
             <section id="cuisineButtons" class="cuisineButtons">
                 <h2>Select a cuisine!</h2>

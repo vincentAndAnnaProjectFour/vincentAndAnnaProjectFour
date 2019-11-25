@@ -27,19 +27,36 @@ header {
         position: relative;
         top: 124px;
     }
+    .buttons {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        display:flex;
+        justify-content:flex-end;
+        width: 100%;
+    }
     .loginButton,
     .signUpButton,  
     .signOutButton {
-        z-index: 20;
-        position: absolute;
-        top: 0;
+        background:none;
+        border:none;
+        color:$primaryColour;
+        transition: all .3s;
+        &:hover {
+            opacity:.5;
+        }
     }
     .loginButton {
-        right: 20%;
-    }
-    .signUpButton,
-    .signOutButton {
-        right: 0;
+        margin-right: 25px;
+        &:after {
+            content:'';
+            width:1px;
+            height:20px;
+            border-right: 2px solid $primaryColour;
+            position: absolute;
+            top:5px;
+            right:100px;
+        }
     }
     .signOutButton {
         display: none;
@@ -48,14 +65,17 @@ header {
     .signUpModal {
         display: none;
         position: fixed;
-        z-index: 10;
+        z-index: 99;
         top: 40%;
         left: 50%;
         transform: translate(-50%, -40%);
         overflow: auto;
-        background-color: rgba(255, 255, 255, 0.9);
-        border: 10px black solid;
-        border-radius: 25px;
+        padding: 50px;
+        background-color: $primaryColour;
+        // border: 1px $accentColour solid;
+        border:1px solid rgba(0,0,0,.2);
+        border-radius: 5px;
+        box-shadow:5px 5px 20px rgba(0,0,0,.5);
         -webkit-animation: fade 1s linear;
                 animation: fade 1s linear;
     }
@@ -69,28 +89,42 @@ header {
         margin: 0 auto;
     }
     .modalContent {
-        text-align: center;
+        text-align: left;
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-            -ms-flex-direction: column;
-                flex-direction: column;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
+        flex-direction: column;
         overflow: hidden;
     }
     .close {
-      text-align: right;
+    //   text-align: right;
       position: absolute;
-      right: 10px;
+      top: 10px;
+      right: 15px;
+      cursor:pointer;
+    }
+    input {
+        @include fontSize2(.9rem);
+        margin-top: 5px;
+        padding: 5px;
+    }
+    input[type=submit] {
+        background:$secondaryColour;
+        color:$primaryColour;
+        border:1px transparent solid;
+        padding-left: 20px;
+        padding-right: 20px;
+        transition: all .3s;
+        &:hover {
+            background:$primaryColour;
+            color:$secondaryColour;
+            border:1px $secondaryColour solid;
+        }
     }
     .awardImage img {
         position: absolute;
-        top:20px;
-        right:0;
+        top:80px;
+        right:20px;
         width: 200px;
         // add css shine?
     }
@@ -117,6 +151,14 @@ header {
     }
 }
 
+@media (max-width:1210px) {
+    .loginModal,
+    .signUpModal {
+        padding: 50px 40px;
+        // border: 6px solid $tertiaryColour;
+    }
+}
+
 @media (max-width:1200px) {
     header {
         .headerImage {
@@ -133,6 +175,14 @@ header {
     }
 }
 
+@media (max-width:1080px) {
+    .loginModal,
+    .signUpModal {
+        padding: 50px 30px;
+        // border: 4px solid $tertiaryColour;
+    }
+}
+
 @media (max-width:1000px) {
     header {
         .headerImage {
@@ -145,6 +195,11 @@ header {
     header {
         .headerImage {
             top: 100px;
+        }
+        .loginModal,
+        .signUpModal {
+            padding: 50px 20px;
+            // border: 2px solid $tertiaryColour;
         }
     }
 }
@@ -170,6 +225,23 @@ header {
         }
         .awardText {
             display:block;
+        }
+        .loginButton {
+            margin-right: 0px;
+            &:after {
+                right:85px;
+            }
+        }
+    }
+}
+
+@media (max-width:475px) {
+    header {
+        .loginButton {
+            &:after {
+                height:15px;
+                right:70px;
+            }
         }
     }
 }

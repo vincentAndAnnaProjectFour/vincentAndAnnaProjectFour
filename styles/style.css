@@ -170,7 +170,7 @@ h1, h2, h3, p {
   margin: 0;
   padding: 0; }
 
-h3 {
+h2, h3 {
   line-height: 1;
   margin-bottom: 5px; }
 
@@ -233,33 +233,59 @@ header {
     margin: 0 auto;
     position: relative;
     top: 124px; }
+  header .buttons {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    width: 100%; }
   header .loginButton,
   header .signUpButton,
   header .signOutButton {
-    z-index: 20;
-    position: absolute;
-    top: 0; }
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s; }
+    header .loginButton:hover,
+    header .signUpButton:hover,
+    header .signOutButton:hover {
+      opacity: .5; }
   header .loginButton {
-    right: 20%; }
-  header .signUpButton,
-  header .signOutButton {
-    right: 0; }
+    margin-right: 25px; }
+    header .loginButton:after {
+      content: '';
+      width: 1px;
+      height: 20px;
+      border-right: 2px solid #FFFFFF;
+      position: absolute;
+      top: 5px;
+      right: 100px; }
   header .signOutButton {
     display: none; }
   header .loginModal,
   header .signUpModal {
     display: none;
     position: fixed;
-    z-index: 10;
+    z-index: 99;
     top: 40%;
     left: 50%;
     -webkit-transform: translate(-50%, -40%);
     -ms-transform: translate(-50%, -40%);
     transform: translate(-50%, -40%);
     overflow: auto;
-    background-color: rgba(255, 255, 255, 0.9);
-    border: 10px black solid;
-    border-radius: 25px;
+    padding: 50px;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    -webkit-box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
     -webkit-animation: fade 1s linear;
     animation: fade 1s linear; }
   header .showLoginModal,
@@ -270,7 +296,7 @@ header {
     width: 800px;
     margin: 0 auto; }
   header .modalContent {
-    text-align: center;
+    text-align: left;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -278,18 +304,34 @@ header {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
     overflow: hidden; }
   header .close {
-    text-align: right;
     position: absolute;
-    right: 10px; }
+    top: 10px;
+    right: 15px;
+    cursor: pointer; }
+  header input {
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    padding: 5px; }
+  header input[type=submit] {
+    background: #BA0018;
+    color: #FFFFFF;
+    border: 1px transparent solid;
+    padding-left: 20px;
+    padding-right: 20px;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s; }
+    header input[type=submit]:hover {
+      background: #FFFFFF;
+      color: #BA0018;
+      border: 1px #BA0018 solid; }
   header .awardImage img {
     position: absolute;
-    top: 20px;
-    right: 0;
+    top: 80px;
+    right: 20px;
     width: 200px; }
   header .awardText {
     margin-top: -10px;
@@ -303,6 +345,11 @@ header {
   header .headerImage {
     top: 116px; } }
 
+@media (max-width: 1210px) {
+  .loginModal,
+  .signUpModal {
+    padding: 50px 40px; } }
+
 @media (max-width: 1200px) {
   header .headerImage {
     top: 112px; } }
@@ -311,13 +358,21 @@ header {
   header .headerImage {
     top: 108px; } }
 
+@media (max-width: 1080px) {
+  .loginModal,
+  .signUpModal {
+    padding: 50px 30px; } }
+
 @media (max-width: 1000px) {
   header .headerImage {
     top: 104px; } }
 
 @media (max-width: 900px) {
   header .headerImage {
-    top: 100px; } }
+    top: 100px; }
+  header .loginModal,
+  header .signUpModal {
+    padding: 50px 20px; } }
 
 @media (max-width: 800px) {
   header .headerImage {
@@ -331,7 +386,16 @@ header {
   header .awardImage img {
     display: none; }
   header .awardText {
-    display: block; } }
+    display: block; }
+  header .loginButton {
+    margin-right: 0px; }
+    header .loginButton:after {
+      right: 85px; } }
+
+@media (max-width: 475px) {
+  header .loginButton:after {
+    height: 15px;
+    right: 70px; } }
 
 @media (max-width: 400px) {
   header .headerImage {
@@ -390,10 +454,10 @@ main {
     font-weight: bold;
     margin: 10px 0px; }
 
-.restaurantOptions {
+.restaurantOptions, .bookmarkSection {
   padding: 50px 50px 100px;
   position: relative; }
-  .restaurantOptions ul {
+  .restaurantOptions ul, .bookmarkSection ul {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -402,11 +466,11 @@ main {
     -webkit-box-pack: start;
     -ms-flex-pack: start;
     justify-content: flex-start; }
-  .restaurantOptions li {
+  .restaurantOptions li, .bookmarkSection li {
     width: calc((100% - 80px) / 3); }
-  .restaurantOptions li:nth-child(3n - 1) {
+  .restaurantOptions li:nth-child(3n - 1), .bookmarkSection li:nth-child(3n - 1) {
     margin: 0px 40px; }
-  .restaurantOptions .itemDetails {
+  .restaurantOptions .itemDetails, .bookmarkSection .itemDetails {
     background: #FFFFFF;
     border: 1px solid rgba(0, 0, 0, 0.2);
     height: 425px;
@@ -414,56 +478,65 @@ main {
     position: relative;
     border-radius: 5px;
     overflow: hidden; }
-    .restaurantOptions .itemDetails img {
+    .restaurantOptions .itemDetails img, .bookmarkSection .itemDetails img {
       height: 200px;
       -o-object-fit: cover;
       object-fit: cover;
       border-radius: 5px; }
-    .restaurantOptions .itemDetails .bookmark, .restaurantOptions .itemDetails .starRating {
+    .restaurantOptions .itemDetails .bookmark, .bookmarkSection .itemDetails .bookmark, .restaurantOptions .itemDetails .starRating, .bookmarkSection .itemDetails .starRating {
       position: absolute;
       top: -1px;
       z-index: 1; }
-    .restaurantOptions .itemDetails .bookmark {
+    .restaurantOptions .itemDetails .bookmark, .bookmarkSection .itemDetails .bookmark {
       left: -1px;
       cursor: pointer; }
-    .restaurantOptions .itemDetails .fa-bookmark {
+    .restaurantOptions .itemDetails .fa-bookmark, .bookmarkSection .itemDetails .fa-bookmark {
       color: #FFBC0D;
       font-size: 2rem;
       -webkit-transition: all 1s;
       -o-transition: all 1s;
       transition: all 1s; }
-      .restaurantOptions .itemDetails .fa-bookmark:hover {
+      .restaurantOptions .itemDetails .fa-bookmark:hover, .bookmarkSection .itemDetails .fa-bookmark:hover {
         -webkit-transform: scaleY(2);
         -ms-transform: scaleY(2);
         transform: scaleY(2); }
-    .restaurantOptions .itemDetails .starRating {
+    .restaurantOptions .itemDetails .fa-bookmark.saved, .bookmarkSection .itemDetails .fa-bookmark.saved {
+      -webkit-transform: scaleY(2);
+      -ms-transform: scaleY(2);
+      transform: scaleY(2); }
+    .restaurantOptions .itemDetails .starRating, .bookmarkSection .itemDetails .starRating {
       background: #BA0018;
       right: 0;
       padding: 15px 25px;
       border-radius: 0px 0px 0px 5px; }
-      .restaurantOptions .itemDetails .starRating p {
+      .restaurantOptions .itemDetails .starRating p, .bookmarkSection .itemDetails .starRating p {
         position: absolute;
         top: 5px;
         right: 15px;
         z-index: 2;
         color: #FFFFFF; }
-    .restaurantOptions .itemDetails .fa-star {
+    .restaurantOptions .itemDetails .fa-star, .bookmarkSection .itemDetails .fa-star {
       position: absolute;
       color: #FFFFFF;
       top: 10px;
       right: 3.5px;
       font-size: 1rem; }
-    .restaurantOptions .itemDetails .description {
+    .restaurantOptions .itemDetails .description, .bookmarkSection .itemDetails .description {
       padding: 20px; }
-      .restaurantOptions .itemDetails .description p {
+      .restaurantOptions .itemDetails .description p, .bookmarkSection .itemDetails .description p {
         opacity: 50%; }
-    .restaurantOptions .itemDetails .address {
+    .restaurantOptions .itemDetails .address, .bookmarkSection .itemDetails .address {
       text-transform: uppercase; }
-    .restaurantOptions .itemDetails .priceAndReviews {
+    .restaurantOptions .itemDetails .priceAndReviews, .bookmarkSection .itemDetails .priceAndReviews {
       margin-top: 10px; }
-    .restaurantOptions .itemDetails span {
+    .restaurantOptions .itemDetails span, .bookmarkSection .itemDetails span {
       background: rgba(0, 0, 0, 0.1);
       padding: 5px; }
+
+.bookmarkSection {
+  display: none; }
+  .bookmarkSection h2 {
+    padding-bottom: 40px; }
 
 .preloader {
   display: none;
@@ -524,13 +597,13 @@ main {
       border: 6px solid #FFBC0D; }
       .cuisineButtons a:hover {
         border: 6px solid transparent; }
-  .restaurantOptions {
+  .restaurantOptions, .bookmarkSection {
     padding: 50px 40px 100px; }
-    .restaurantOptions li {
+    .restaurantOptions li, .bookmarkSection li {
       width: calc((100% - 40px) / 2); }
-    .restaurantOptions li:nth-child(3n - 1) {
+    .restaurantOptions li:nth-child(3n - 1), .bookmarkSection li:nth-child(3n - 1) {
       margin: 0px 0px; }
-    .restaurantOptions li:nth-child(2n - 1) {
+    .restaurantOptions li:nth-child(2n - 1), .bookmarkSection li:nth-child(2n - 1) {
       margin-right: 40px; } }
 
 @media (max-width: 1080px) {
@@ -552,13 +625,13 @@ main {
       border: 2px solid #FFBC0D; }
       .cuisineButtons a:hover {
         border: 2px solid transparent; }
-  .restaurantOptions {
+  .restaurantOptions, .bookmarkSection {
     padding: 50px 20px 100px; }
-    .restaurantOptions li {
+    .restaurantOptions li, .bookmarkSection li {
       width: calc((100% - 20px) / 2); }
-    .restaurantOptions li:nth-child(2n - 1) {
+    .restaurantOptions li:nth-child(2n - 1), .bookmarkSection li:nth-child(2n - 1) {
       margin-right: 20px; }
-    .restaurantOptions .itemDetails {
+    .restaurantOptions .itemDetails, .bookmarkSection .itemDetails {
       margin-bottom: 20px; } }
 
 @media (max-width: 785px) {
@@ -566,15 +639,15 @@ main {
     display: none; }
   .cuisineButtons form {
     display: block; }
-  .restaurantOptions li {
+  .restaurantOptions li, .bookmarkSection li {
     width: 100%; }
-  .restaurantOptions li:nth-child(2n - 1) {
+  .restaurantOptions li:nth-child(2n - 1), .bookmarkSection li:nth-child(2n - 1) {
     margin-right: 0px; }
-  .restaurantOptions .itemDetails {
+  .restaurantOptions .itemDetails, .bookmarkSection .itemDetails {
     height: 400px; } }
 
 @media (max-width: 475px) {
-  .restaurantOptions .itemDetails {
+  .restaurantOptions .itemDetails, .bookmarkSection .itemDetails {
     height: 425px; } }
 
 footer {

@@ -104,6 +104,9 @@ main {
                 transform:scaleY(2);
             }
         }
+        .fa-bookmark.saved {
+            transform:scaleY(2);
+        }
         .starRating {
             background:$secondaryColour;
             right:0;
@@ -141,6 +144,14 @@ main {
             background:rgba(0,0,0,.1);
             padding: 5px;
         }
+    }
+}
+
+.bookmarkSection {
+    @extend .restaurantOptions;
+    display: none;
+    h2 {
+        padding-bottom: 40px;
     }
 }
 
