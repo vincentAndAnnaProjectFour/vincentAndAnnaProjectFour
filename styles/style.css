@@ -565,7 +565,7 @@ main {
 .bookmarkSection {
   display: none; }
   .bookmarkSection h2 {
-    padding-bottom: 40px; }
+    display: block; }
 
 .preloader {
   display: none;

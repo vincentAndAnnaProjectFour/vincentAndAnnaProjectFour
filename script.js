@@ -182,10 +182,12 @@ cuisineApp.buttonEvent = function () {
                 $('#displayedRestaurants').empty();
                 const cuisineID = $(button).attr('id');
                 cuisineApp.ajaxRequest(cuisineID);
+                $('#displayedRestaurantsTitle').html(`Top 20 Results for ${$(button).siblings().text()}`);
             }
             else {
                 const cuisineID = $(button).attr('id');
                 cuisineApp.ajaxRequest(cuisineID);
+                $('#displayedRestaurantsTitle').html(`Top 20 Results for ${$(button).siblings().text()}`);
             }
             $displayedRestaurantsTitle.css('display', 'block');
         });
@@ -272,6 +274,10 @@ cuisineApp.bookmarkAjaxRequest = function () {
                 });
                 restaurantDetail.forEach((item) => {
                     cuisineApp.displayBookmarkedRestaurants(item);
+                    const $bookmarkIcon = $('.fa-bookmark');
+                    const $savedBookmark = $('.bookmark');
+                    $savedBookmark.append('<i class="fas fa-star"></i>');
+                    $bookmarkIcon.addClass('saved');
                 });
             });
     });
@@ -338,11 +344,7 @@ cuisineApp.displayBookmarkedRestaurants = function (restaurant) {
     const restaurantDescription = cuisineApp.generateRestaurantContainer(restaurant);
     const $displayedBookmarks = $('#displayedBookmarks');
     const $bookmarkSection = $('#bookmarkSection');
-    const $bookmarkIcon = $('.fa-bookmark');
-    const $savedBookmark = $('.bookmark');
-
-    $savedBookmark.append('<i class="fas fa-star"></i>');
-    $bookmarkIcon.addClass('saved');
+    
     $bookmarkSection.css('display', 'block');
     $displayedBookmarks.append(restaurantDescription);
 }
@@ -361,8 +363,13 @@ cuisineApp.bookmarkRestaurants = function () {
 
     // Returns an array of objects
     const bookmarks = Array.from(document.querySelectorAll('.bookmark'));
+    const dbRef = firebase.database().ref();
 
     let saved = [];
+
+    const bookmarkList = {
+        bookmarks: saved
+    }
 
     bookmarks.forEach(function (bookmark) {
         $(bookmark).on('click', function () {
@@ -379,6 +386,8 @@ cuisineApp.bookmarkRestaurants = function () {
                 $(this).find('.fa-bookmark').css('transform', 'scaleY(2)');
                 saved.push($(this).attr('id'));
             }
+            dbRef.update(bookmarkList);
+            cuisineApp.bookmarkAjaxRequest();
         })
     })
 }
