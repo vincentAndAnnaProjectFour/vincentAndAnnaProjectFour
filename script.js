@@ -206,15 +206,17 @@ cuisineApp.selectEvent = function () {
     $(cuisineForm).on('change', function () {
         const option = $(this).children(':selected').attr('id');
         $('.preloader').toggle();
-        cuisineSelection.forEach(function (selection) {
+        cuisineSelection.forEach(function () {
             if ($('#displayedRestaurants li').length >= 1) {
                 $('#displayedRestaurants').empty();
                 const cuisineID = option;
                 cuisineApp.ajaxRequest(cuisineID);
+                $('#displayedRestaurantsTitle').html(`Top 20 Results for ${$('#options option:selected').text()}`);
             }
             else {
                 const cuisineID = option;
                 cuisineApp.ajaxRequest(cuisineID);
+                $('#displayedRestaurantsTitle').html(`Top 20 Results for ${$('#options option:selected').text()}`);
             }
             $displayedRestaurantsTitle.css('display', 'block');
         });
@@ -275,9 +277,11 @@ cuisineApp.bookmarkAjaxRequest = function () {
                 restaurantDetail.forEach((item) => {
                     cuisineApp.displayBookmarkedRestaurants(item);
                     const $bookmarkIcon = $('.fa-bookmark');
-                    const $savedBookmark = $('.bookmark');
-                    $savedBookmark.append('<i class="fas fa-star"></i>');
+                    const $savedBookmark = $('.bookmark.saved');
+
                     $bookmarkIcon.addClass('saved');
+                    $savedBookmark.addClass('saved');
+                    $savedBookmark.append('<i class="fas fa-star"></i>');
                 });
             });
     });
