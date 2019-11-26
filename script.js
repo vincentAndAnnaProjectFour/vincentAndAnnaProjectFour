@@ -3,7 +3,7 @@
 // Generate restaurantApp namespace
 const cuisineApp = {};
 
-cuisineApp.key = '2a1fee6e3fbe95cb3651bb670e95b77e';
+cuisineApp.apiKey = '2a1fee6e3fbe95cb3651bb670e95b77e';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -16,16 +16,28 @@ const firebaseConfig = {
     appId: "1:451681928751:web:14bc6204b28039fb8468da"
 };
 
+// Handle Errors function.
+cuisineApp.errorAlert = function (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    swal.fire(
+        `${errorCode} Error`,
+        `${errorMessage}`,
+        "error");
+}
 
 // Cuisine Button Event Function controls what restaurants to search for based on cuisine button clicked
 cuisineApp.buttonEvent = function () {
+
+    // Button Event Variables
     const $loginButton = $('#login');
     const $signUpButton = $('#signUp');
     const $signOutButton = $('#signOut');
-    const $bookmarksButton = $('#bookmarks');
     const $closeModal = $('.close');
     const $signUpModal = $('#signUpModal');
     const $loginModal = $('#loginModal');
+    
+    // Sign out current user function
     $signOutButton.on('click', function () {
         firebase.auth().signOut().then(function () {
             firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE)
@@ -38,25 +50,34 @@ cuisineApp.buttonEvent = function () {
                 })
                 .catch(function (error) {
                     // Handle Errors here.
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
+                    cuisineApp.errorAlert(error);
                 });
             // Sign-out successful.
         }).catch(function (error) {
-            // An error happened.
-            console.log(error);
+            // Handle Errors here.
+            cuisineApp.errorAlert(error);
         });
     });
+
+    // Sign Up function allows user to create an account
     $signUpButton.on('click', function () {
+
+        // Button Event Variables
         const $signUpForm = $('#signUpForm');
         const $signUpEmailAddress = $('#signUpEmailAddress');
         const $signUpPassword = $('#signUpPassword');
         const $confirmPassword = $('#confirmPassword');
+        
+        // Everytime the sign up button is clicked, do not show login modal
         $loginModal.removeClass('showLoginModal');
         $signUpModal.toggleClass('showSignUpModal');
+        
+        // Closes sign up modal on close
         $closeModal.on('click', function () {
             $signUpModal.removeClass('showSignUpModal');
         });
+
+        // When user submits sign up information, create account for user
         $signUpForm.on('submit', function (event) {
             event.preventDefault();
             if ((($signUpEmailAddress.val() !== "") && ($signUpPassword.val() !== "") && ($confirmPassword.val() !== "")) && ($signUpPassword.val() === $confirmPassword.val())) {
@@ -65,60 +86,56 @@ cuisineApp.buttonEvent = function () {
                 firebase.auth().createUserWithEmailAndPassword(email, password)
                     .catch(function (error) {
                         // Handle Errors here.
-                        const signUpErrorCode = error.code;
-                        const signUpErrorMessage = error.message;
-                        console.log(`${signUpErrorCode} ${signUpErrorMessage}`)
-                        // ...
+                        cuisineApp.errorAlert(error);
                     });
                 // const user = firebase.auth().currentUser;
-                // if (user) {
-                //     console.log('signed in');
-                //     $signOutButton.css('display', 'block');
-                //     $signUpButton.css('display', 'none');
-                //     $loginButton.css('display', 'none');
-                //     $signUpModal.removeClass('showSignUpModal');
-                //     // User is signed in.
-                // }
                 firebase.auth().onAuthStateChanged(function (user) {
                     if (user) {
-                        console.log('signed in');
+                        // User is signed in.
                         $signOutButton.css('display', 'block');
-                        $bookmarksButton.css('display', 'block');
                         $signUpButton.css('display', 'none');
                         $loginButton.css('display', 'none');
                         $signUpModal.removeClass('showSignUpModal');
-                        // User is signed in.
-                    }
-                    else {
-                        console.log('signed out');
+                        swal.fire(
+                            "Success",
+                            "You have successfully signed up!",
+                            "success");
                     }
                 });
             }
             else if ($signUpPassword.val() !== $confirmPassword.val()) {
                 swal.fire(
                     "Error",
-                    "Your passwords do not match.",
+                    "Your passwords do not match!",
                     "error");
-                // alert('Error, your passwords do not match!');
             }
             else if (($signUpEmailAddress.val() === "") || ($signUpPassword.val() === "") || ($confirmPassword.val() === "")) {
                 swal.fire(
                     "Error",
                     "You are missing an input field!",
                     "error");
-                // alert('Error, you are missing an input field!');
             }
         });
     });
+
+    // Login function allows user to log into an existing account
     $loginButton.on('click', function () {
+
+        // Button Event Variables
         const $loginForm = $('#loginForm');
         let $loginEmailAddress = $('#loginEmailAddress');
         let $loginPassword = $('#loginPassword');
+        
+        // Everytime the login button is clicked, do not show sign up modal
         $signUpModal.removeClass('showSignUpModal');
         $loginModal.toggleClass('showLoginModal');
+        
+        // Closes sign up modal on close
         $closeModal.on('click', function () {
             $loginModal.removeClass('showLoginModal');
         });
+
+        // When user logs in with correct credentials function
         $loginForm.on('submit', function (event) {
             event.preventDefault();
             if (($loginEmailAddress.val() !== "") && ($loginPassword.val() !== "")) {
@@ -127,58 +144,37 @@ cuisineApp.buttonEvent = function () {
                 firebase.auth().signInWithEmailAndPassword(email, password)
                     .catch(function (error) {
                         // Handle Errors here.
-                        const loginErrorCode = error.code;
-                        const loginErrorMessage = error.message;
-                        // ...
-                        console.log(`${loginErrorCode} ${loginErrorMessage}`);
+                        cuisineApp.errorAlert(error);
                     });
                 firebase.auth().onAuthStateChanged(function (user) {
                     if (user) {
-                        console.log('signed in');
+                        // User is signed out.
                         cuisineApp.bookmarkAjaxRequest();
                         $signOutButton.css('display', 'block');
-                        $bookmarksButton.css('display', 'block');
                         $loginButton.css('display', 'none');
                         $signUpButton.css('display', 'none');
                         $loginModal.removeClass('showLoginModal');
-                        // User is signed out.
-                    }
-                    else {
-                        console.log('signed out');
+                        swal.fire(
+                            "Success",
+                            "You have successfully signed in!",
+                            "success");
                     }
                 });
-                // const formData = {
-                //     email: $emailAddress.val(),
-                //     password: $password.val(),
-                // }
-                // usersRef.once('value', (data) => {
-                // const userData = data.val();
-                // if ((userData.email === formData.email) && (userData.password === formData.password)) {
-                //     alert('Success');
-                // }
-                // else if ((userData.email === formData.email) && (userData.password !== formData.password)) {
-                //     alert('Incorrect password');
-                // }
-                // else {
-                //     usersRef.push(formData);
-                //     // alert('Unsuccessful');
-                // }
-                // });
             }
             else if (($loginEmailAddress.val() === "") || ($loginPassword.val() === "")) {
                 swal.fire(
                     "Error",
                     "You have entered an incorrect email address or password.",
                     "error");
-                // alert('Error, you have entered an incorrect email address or password!');
             }
         });
     });
 
     // Generate variable to store cuisine id 
     const cuisineButtons = Array.from($('#cuisineButtonsList').find('a'));
-    // console.log(cuisineButtons);
+    const $displayedRestaurantsTitle = $('#displayedRestaurantsTitle');
 
+    // On click of each cuisine button, display the clicked cuisine
     cuisineButtons.forEach(function (button) {
         $(button).on('click', function () {
             $('.preloader').toggle();
@@ -191,18 +187,20 @@ cuisineApp.buttonEvent = function () {
                 const cuisineID = $(button).attr('id');
                 cuisineApp.ajaxRequest(cuisineID);
             }
+            $displayedRestaurantsTitle.css('display', 'block');
         });
     });
 }
 
-// SELECTING CUISINE VIA FORM ELEMENT
+// SELECTING CUISINE VIA FORM ELEMENT FOR MOBILE VERSION
 cuisineApp.selectEvent = function () {
 
     // Generate variable to store cuisine id 
     const cuisineForm = Array.from($('form').find('select'));
     const cuisineSelection = Array.from($('form').find('option'));
-    // console.log(cuisineSelection);
+    const $displayedRestaurantsTitle = $('#displayedRestaurantsTitle');
 
+    // On click of each cuisine select option, display the clicked cuisine
     $(cuisineForm).on('change', function () {
         const option = $(this).children(':selected').attr('id');
         $('.preloader').toggle();
@@ -210,14 +208,13 @@ cuisineApp.selectEvent = function () {
             if ($('#displayedRestaurants li').length >= 1) {
                 $('#displayedRestaurants').empty();
                 const cuisineID = option;
-                console.log(cuisineID)
                 cuisineApp.ajaxRequest(cuisineID);
             }
             else {
                 const cuisineID = option;
-                console.log(cuisineID)
                 cuisineApp.ajaxRequest(cuisineID);
             }
+            $displayedRestaurantsTitle.css('display', 'block');
         });
     });
 }
@@ -232,19 +229,21 @@ cuisineApp.ajaxRequest = function (cID) {
         method: 'GET',
         dataType: 'json',
         headers: {
-            'user-key': cuisineApp.key
+            'user-key': cuisineApp.apiKey
         }
-    }).then((result) => {
+    }).then(function (result) {
         // Then store result in the variable generated
         const { restaurants } = result;
         // Call Display Restaurants Function passing the result variable as an argument
         cuisineApp.displayRestaurants(restaurants);
-        cuisineApp.bookmarkRestaurants(restaurants);
-    }).catch((error) => {
-        // console.log(error);
+        cuisineApp.bookmarkRestaurants();
+    }).catch(function (error) {
+        // Handle Errors here.
+        cuisineApp.errorAlert(error);
     });
 }
 
+// Bookmark AJAX Request Function calls the user's bookmarked restaurants
 cuisineApp.bookmarkAjaxRequest = function () {
     const dbRef = firebase.database().ref();
     // AJAX Function will get info from URL based on argument passed
@@ -254,14 +253,15 @@ cuisineApp.bookmarkAjaxRequest = function () {
             method: 'GET',
             dataType: 'json',
             headers: {
-                'user-key': cuisineApp.key
+                'user-key': cuisineApp.apiKey
             }
         })
     }
     dbRef.on('value', (data) => {
+
         const bookmarkData = data.val();
-        // console.log(bookmarkData);
         const savedBookmarkList = [];
+
         bookmarkData.bookmarks.forEach((item) => {
             savedBookmarkList.push(getRestaurant(item));
         });
@@ -271,14 +271,14 @@ cuisineApp.bookmarkAjaxRequest = function () {
                     return result[0];
                 });
                 restaurantDetail.forEach((item) => {
-                    // console.log(restaurantDetail);
                     cuisineApp.displayBookmarkedRestaurants(item);
                 });
             });
     });
 }
 
-cuisineApp.displayBookmarkedRestaurants = function (restaurant) {
+cuisineApp.generateRestaurantContainer = function (restaurant) {
+    // Restaurant Variables
     const {
         name,
         url,
@@ -292,16 +292,14 @@ cuisineApp.displayBookmarkedRestaurants = function (restaurant) {
     } = restaurant;
     const rating = user_rating.aggregate_rating;
     const address = location.address;
-    const $displayedBookmarks = $('#displayedBookmarks');
-    const $bookmarkSection = $('#bookmarkSection');
-    // 	Append the DOM with the variables in containers
+
+    // Append the DOM with the variables in containers
     const restaurantDescription = `
         <li>
             <div class="itemDetails">
                 <a href="${url}"><img src="${featuredImage}"></a>
                 <div class="bookmark" id="${id}">
-                    <i class="fas fa-bookmark saved"></i>
-                    <i class="fas fa-star"></i>
+                    <i class="fas fa-bookmark"></i>
                 </div>
                 <div class="starRating">
                     <p>${rating}</p>
@@ -315,94 +313,54 @@ cuisineApp.displayBookmarkedRestaurants = function (restaurant) {
             </div>
         </li>
     `;
+
     $('.preloader').fadeOut();
-    $bookmarkSection.css('display', 'block');
-    $displayedBookmarks.append(restaurantDescription);
-    //Function to replace represent price in dollar signs instead of number
+    // Function to represent price in dollar signs instead of number
     const prices = $('.price');
     const dollarSigns = '$'
-    const priceInDollars = prices.map(function () {
+    prices.map(function () {
         const priceInNumbers = parseInt($(this).text());
         $(this).replaceWith(`<span>${dollarSigns.repeat(priceInNumbers)}</span>`);
     })
-    //Shorten phone number
+
+    // Shorten phone number
     const phoneNumbers = $('.phoneNumber');
-    const shortenedPhoneNumbers = phoneNumbers.map(function () {
+    phoneNumbers.map(function () {
         const newString = $(this).text().replace('+1 ', '');
         $(this).replaceWith(`<p>${newString}</p>`);
     })
+
+    return restaurantDescription;
+}
+
+cuisineApp.displayBookmarkedRestaurants = function (restaurant) {
+   
+    const restaurantDescription = cuisineApp.generateRestaurantContainer(restaurant);
+    const $displayedBookmarks = $('#displayedBookmarks');
+    const $bookmarkSection = $('#bookmarkSection');
+    const $bookmarkIcon = $('.fa-bookmark');
+    const $savedBookmark = $('.bookmark');
+
+    $savedBookmark.append('<i class="fas fa-star"></i>');
+    $bookmarkIcon.addClass('saved');
+    $bookmarkSection.css('display', 'block');
+    $displayedBookmarks.append(restaurantDescription);
 }
 
 // Display Restaurants Function collected from AJAX request
 cuisineApp.displayRestaurants = function (item) {
     item.forEach(option => {
         const { restaurant } = option;
-        // Pull keys from object for image, address, avg cost, phone number
-        const {
-            name,
-            url,
-            location,
-            price_range: priceRange,
-            user_rating,
-            all_reviews_count: reviewCount,
-            featured_image: featuredImage,
-            phone_numbers: phoneNumber,
-            id
-        } = restaurant;
-
-        const rating = user_rating.aggregate_rating;
-        const address = location.address;
+        const restaurantDescription = cuisineApp.generateRestaurantContainer(restaurant);
         const $displayedRestaurants = $('#displayedRestaurants');
-
-        // 	Append the DOM with the variables in containers
-        const restaurantDescription = `
-            <li>
-                <div class="itemDetails">
-                    <a href="${url}"><img src="${featuredImage}"></a>
-                    <div class="bookmark" id="${id}">
-                        <i class="fas fa-bookmark"></i>
-                    </div>
-                    <div class="starRating">
-                        <p>${rating}</p>
-                    </div>
-                    <div class="description">
-                        <h3>${name}</h3>
-                        <p class="address">${address}</p>
-                        <p class="phoneNumber">${phoneNumber}</p>
-                        <p class="priceAndReviews"><span class="price">${priceRange}</span> <span class="reviews">${reviewCount} Reviews</span></p>
-                    </div>
-                </div>
-            </li>
-        `;
-
-        $('.preloader').fadeOut();
         $displayedRestaurants.append(restaurantDescription);
-
-
-        //Function to replace represent price in dollar signs instead of number
-        const prices = $('.price');
-        const dollarSigns = '$'
-
-        const priceInDollars = prices.map(function () {
-            const priceInNumbers = parseInt($(this).text());
-            $(this).replaceWith(`<span>${dollarSigns.repeat(priceInNumbers)}</span>`);
-        }) 
-
-        //Shorten phone number
-        const phoneNumbers = $('.phoneNumber');
-        
-        const shortenedPhoneNumbers = phoneNumbers.map(function () {
-            const newString = $(this).text().replace('+1 ','');
-            $(this).replaceWith(`<p>${newString}</p>`);
-        })
 
     });
 }
-cuisineApp.bookmarkRestaurants = function (item) {
+cuisineApp.bookmarkRestaurants = function () {
 
+    // Returns an array of objects
     const bookmarks = Array.from(document.querySelectorAll('.bookmark'));
-    // returns an array of objects
-    // console.log(bookmarks);
 
     let saved = [];
 
@@ -425,13 +383,13 @@ cuisineApp.bookmarkRestaurants = function (item) {
     })
 }
 
-//Click event to scroll to top
+// Click event to scroll to top
 $('.scrollToTop').click(function () {
     $('html, body').animate({ scrollTop: 0 }, 800);
     return false;
 });
 
-//Function to display scroll to top
+// Function to display scroll to top
 $(window).scroll(function () {
     if ($(this).scrollTop() > 1300) {
         $('.scrollToTop').fadeIn();
@@ -439,7 +397,6 @@ $(window).scroll(function () {
         $('.scrollToTop').fadeOut();
     }
 });
-
 
 // Start init app by calling cuisine button event function
 cuisineApp.init = function () {

@@ -1,24 +1,23 @@
 // HEADER CONTENT STARTS HERE
 header {
-    // background:$secondaryColour;
-    background:rgb(186,0,24);
+    background: $secondaryColour;
     .wrapper {
         position: relative;
         padding-bottom: 80px;
     }
-    .headerOverlay {
+    .headerTitle {
         position: absolute;
-        // top:0;
-        // z-index: 10;
         h1 {
             @include fontSize1(4rem);
             margin-top: 20px;
             cursor:default;
-            &:hover span {
+            &:hover span,
+            &:focus span {
                 text-shadow: 5px 5px $tertiaryColour;
             }
         }
         span {
+            text-transform: uppercase;
             transition: text-shadow 0.5s ease-in;
         }
     }
@@ -28,6 +27,7 @@ header {
         top: 124px;
     }
     .buttons {
+        margin-top: 50px;
         position: absolute;
         z-index: 1;
         top: 0;
@@ -38,11 +38,13 @@ header {
     .loginButton,
     .signUpButton,  
     .signOutButton {
+        text-transform: capitalize;
         background:none;
         border:none;
         color:$primaryColour;
         transition: all .3s;
-        &:hover {
+        &:hover,
+        &:focus {
             opacity:.5;
         }
     }
@@ -55,7 +57,7 @@ header {
             border-right: 2px solid $primaryColour;
             position: absolute;
             top:5px;
-            right:100px;
+            right:95px;
         }
     }
     .signOutButton {
@@ -72,7 +74,6 @@ header {
         overflow: auto;
         padding: 50px;
         background-color: $primaryColour;
-        // border: 1px $accentColour solid;
         border:1px solid rgba(0,0,0,.2);
         border-radius: 5px;
         box-shadow:5px 5px 20px rgba(0,0,0,.5);
@@ -97,11 +98,14 @@ header {
         overflow: hidden;
     }
     .close {
-    //   text-align: right;
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      cursor:pointer;
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        cursor:pointer;
+        &:hover,
+        &:focus {
+            color: $secondaryColour;
+        }
     }
     input {
         @include fontSize2(.9rem);
@@ -115,22 +119,16 @@ header {
         padding-left: 20px;
         padding-right: 20px;
         transition: all .3s;
-        &:hover {
+        &:hover,
+        &:focus {
             background:$primaryColour;
             color:$secondaryColour;
             border:1px $secondaryColour solid;
         }
     }
-    .awardImage img {
-        position: absolute;
-        top:80px;
-        right:20px;
-        width: 200px;
-        // add css shine?
-    }
     .awardText {
         margin-top: -10px;
-        display:none;
+        text-transform: capitalize;
     }
 }
 
@@ -155,7 +153,6 @@ header {
     .loginModal,
     .signUpModal {
         padding: 50px 40px;
-        // border: 6px solid $tertiaryColour;
     }
 }
 
@@ -179,7 +176,6 @@ header {
     .loginModal,
     .signUpModal {
         padding: 50px 30px;
-        // border: 4px solid $tertiaryColour;
     }
 }
 
@@ -199,7 +195,6 @@ header {
         .loginModal,
         .signUpModal {
             padding: 50px 20px;
-            // border: 2px solid $tertiaryColour;
         }
     }
 }
@@ -209,9 +204,6 @@ header {
         .headerImage {
             top: 96px;
         }
-        .awardImage img {
-            width: 150px;
-        }
     }
 }
 
@@ -220,17 +212,14 @@ header {
         .headerImage {
             top: 92px;
         }
-        .awardImage img {
-            display:none;
-        }
-        .awardText {
-            display:block;
-        }
         .loginButton {
             margin-right: 0px;
             &:after {
                 right:85px;
             }
+        }
+        .buttons {
+            margin-top: 0;
         }
     }
 }
@@ -253,5 +242,4 @@ header {
         }
     }
 }
-
 // HEADER CONTENT ENDS HERE

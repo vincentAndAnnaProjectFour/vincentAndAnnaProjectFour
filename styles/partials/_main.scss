@@ -1,19 +1,13 @@
 // MAIN STYLES STARTS HERE
 main {
-    background: rgb(186,0,24);
+    background: $secondaryColour;
     padding: 0px 0px 60px 0px;
-    // box-shadow:0px 0px 10px 5px rgba(0, 0, 0, .5);
     .wrapper {
-        // margin-top: 80px;
-        background: rgb(250,250,250);
+        background: $quaternaryColour;
         border-radius:25px;
         padding-top: 20px;
     }
 }
-
-// * {
-//     border: 1px solid blue;
-// }
 
 .cuisineButtons {
     padding: 50px 50px 0px;
@@ -34,15 +28,22 @@ main {
         height: 200px;
         border-radius: 100%;
         border: 8px solid $tertiaryColour;
-        &:hover {
+        &:hover,
+        &:focus {
             border: 8px solid transparent;
         }
+    }
+    p {
+        text-transform: capitalize;
+    }
+    a:focus img {
+        transform: scale(1.2);
     }
     img {
         object-fit:cover;
         width:100%;
         height:100%;
-        transition: all 1s;
+        transition: all 0.3s;
         &:hover {
             transform: scale(1.2);
         }
@@ -57,13 +58,19 @@ main {
         padding:10px;
         font-weight:bold;
         margin:10px 0px;
+        text-transform: capitalize;
     }
 }
 
 .restaurantOptions {
     padding: 50px 50px 100px;
     position: relative;
+    h2 {
+        display: none;
+        text-transform: capitalize;
+    }
     ul {
+        padding: 20px 0;
         display:flex;
         flex-wrap:wrap;
         justify-content:flex-start;
@@ -82,10 +89,21 @@ main {
         position: relative;
         border-radius: 5px;
         overflow:hidden;
+        a {
+            overflow: hidden;
+            display: block;
+        }
+        a:focus img {
+            transform: scale(1.2);
+        }
         img {
             height:200px;
             object-fit: cover;
             border-radius: 5px;
+            transition: all 0.3s;
+            &:hover {
+                transform: scale(1.2);
+            }
         }
         .bookmark, .starRating {
             position: absolute;
@@ -99,7 +117,7 @@ main {
         .fa-bookmark {
             color: $tertiaryColour;
             font-size:2rem;
-            transition: all 1s;
+            transition: all 0.3s;
             &:hover {
                 transform:scaleY(2);
             }
@@ -117,7 +135,6 @@ main {
                 top:5px;
                 right:15px;
                 z-index:2;
-                // border: 1px solid red;
                 color:$primaryColour;
             }
         }
@@ -155,19 +172,6 @@ main {
     }
 }
 
-// .preloader {
-//     position: absolute;
-//     width: 100px;
-//     height: 100px;
-//     top: 0px;
-//     left: calc(50% - 50px);
-//     background-image: url(https://raw.githubusercontent.com/niklausgerber/PreLoadMe/master/img/status.gif);
-//     background-repeat: no-repeat;
-//     background-position: center;
-//     display:none;
-// }
-
-
 // PRELOADER THANKS TO https://loading.io/css/
 .preloader {
     display: none;
@@ -175,7 +179,7 @@ main {
     width: 80px;
     height: 80px;
     left: calc(50% - 40px);
-    top: 0;
+    top: 40%;
 }
 .preloader div {
     box-sizing: border-box;
@@ -184,10 +188,10 @@ main {
     width: 64px;
     height: 64px;
     margin: 8px;
-    border: 8px solid #BA0018;
+    border: 8px solid $secondaryColour;
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: #BA0018 transparent transparent transparent;
+    border-color: $secondaryColour transparent transparent transparent;
 }
 .preloader div:nth-child(1) {
     animation-delay: -0.45s;
@@ -208,7 +212,6 @@ main {
     }
 }
 
-
 // MEDIA QUERIES
 @media (max-width: 1210px) {
     .cuisineButtons {
@@ -217,7 +220,8 @@ main {
             width: 180px;
             height: 180px;
             border: 6px solid $tertiaryColour;
-            &:hover {
+            &:hover,
+            &:focus {
                 border: 6px solid transparent;
             }
         }
@@ -243,7 +247,8 @@ main {
             width: 160px;
             height: 160px;
             border: 4px solid $tertiaryColour;
-            &:hover {
+            &:hover,
+            &:focus {
                 border: 4px solid transparent;
             }
         }
@@ -257,7 +262,8 @@ main {
             width: 140px;
             height: 140px;
             border: 2px solid $tertiaryColour;
-            &:hover {
+            &:hover,
+            &:focus {
                 border: 2px solid transparent;
             }
         }
@@ -306,5 +312,4 @@ main {
         }
     }
 }
-
 // MAIN CONTENT ENDS HERE

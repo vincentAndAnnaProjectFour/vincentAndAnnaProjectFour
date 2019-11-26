@@ -1,8 +1,9 @@
 // FOOTER STYLES STARTS HERE
 footer {
-    background:rgb(186,0,24);
+    background:$secondaryColour;
     color:$primaryColour;
     text-align:center;
     padding-bottom: 20px;
+    text-transform: capitalize;
 }
 // FOOTER STYLES ENDS HERE
