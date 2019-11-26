@@ -36,6 +36,7 @@ cuisineApp.buttonEvent = function () {
     const $closeModal = $('.close');
     const $signUpModal = $('#signUpModal');
     const $loginModal = $('#loginModal');
+    const checkUser = firebase.auth().currentUser;
     
     // Sign out current user function
     $signOutButton.on('click', function () {
@@ -367,14 +368,14 @@ cuisineApp.bookmarkRestaurants = function () {
 
     // Returns an array of objects
     const bookmarks = Array.from(document.querySelectorAll('.bookmark'));
-    const userID = firebase.auth().currentUser.uid;
-    const userRef = firebase.database().ref('users').child(userID);
 
     let saved = [];
 
     const bookmarkList = {};
 
     function checkUserID() {
+        const userID = firebase.auth().currentUser.uid;
+        const userRef = firebase.database().ref('users').child(userID);
         if (userRef === userID) {
             userRef.update(bookmarkList);
         }
