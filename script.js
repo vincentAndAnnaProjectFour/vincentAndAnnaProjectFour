@@ -278,10 +278,6 @@ cuisineApp.bookmarkAjaxRequest = function () {
 
                     restaurantDetail.forEach((item) => {
                         cuisineApp.displayBookmarkedRestaurants(item);
-                        const $bookmarkIcon = $('.fa-bookmark');
-                        const $savedBookmark = $('.bookmark.saved');
-                        $bookmarkIcon.addClass('saved');
-                        $savedBookmark.append('<i class="fas fa-star"></i>');
                     });
                 });
         });
@@ -350,6 +346,11 @@ cuisineApp.displayBookmarkedRestaurants = function (restaurant) {
     const $displayedBookmarks = $('#displayedBookmarks');
     $bookmarkSection.css('display', 'block');
     $displayedBookmarks.append(restaurantDescription);
+
+    const $bookmarkIcon = $('#bookmarkSection').find('.fa-bookmark');
+    $bookmarkIcon.addClass('saved');    
+    const $savedBookmark = $('#bookmarkSection').find('.bookmark');
+    $savedBookmark.append('<i class="fas fa-star"></i>');
 }
 
 // Display Restaurants Function collected from AJAX request
