@@ -88,7 +88,6 @@ cuisineApp.buttonEvent = function () {
                         // Handle Errors here.
                         cuisineApp.errorAlert(error);
                     });
-                // const user = firebase.auth().currentUser;
                 firebase.auth().onAuthStateChanged(function (user) {
                     if (user) {
                         // User is signed in.
@@ -148,7 +147,7 @@ cuisineApp.buttonEvent = function () {
                     });
                 firebase.auth().onAuthStateChanged(function (user) {
                     if (user) {
-                        // User is signed out.
+                        // User is signed in
                         cuisineApp.bookmarkAjaxRequest();
                         $signOutButton.css('display', 'block');
                         $loginButton.css('display', 'none');
@@ -249,7 +248,8 @@ cuisineApp.ajaxRequest = function (cID) {
 
 // Bookmark AJAX Request Function calls the user's bookmarked restaurants
 cuisineApp.bookmarkAjaxRequest = function () {
-    const dbRef = firebase.database().ref();
+    const userID = firebase.auth().currentUser.uid;
+    const userRef = firebase.database().ref('users').child(userID);
     // AJAX Function will get info from URL based on argument passed
     function getRestaurant(restaurantID) {
         return $.ajax({
@@ -261,30 +261,31 @@ cuisineApp.bookmarkAjaxRequest = function () {
             }
         })
     }
-    dbRef.on('value', (data) => {
+    // if (userID === userRef) {
+        userRef.once('value', (data) => {
 
-        const bookmarkData = data.val();
-        const savedBookmarkList = [];
+            const bookmarkData = data.val().bookmarks;
+            const savedBookmarkList = [];
 
-        bookmarkData.bookmarks.forEach((item) => {
-            savedBookmarkList.push(getRestaurant(item));
-        });
-        $.when(...savedBookmarkList)
-            .then((...bookmarkedRestaurant) => {
-                const restaurantDetail = bookmarkedRestaurant.map((result) => {
-                    return result[0];
-                });
-                restaurantDetail.forEach((item) => {
-                    cuisineApp.displayBookmarkedRestaurants(item);
-                    const $bookmarkIcon = $('.fa-bookmark');
-                    const $savedBookmark = $('.bookmark.saved');
-
-                    $bookmarkIcon.addClass('saved');
-                    $savedBookmark.addClass('saved');
-                    $savedBookmark.append('<i class="fas fa-star"></i>');
-                });
+            bookmarkData.forEach((item) => {
+                savedBookmarkList.push(getRestaurant(item));
             });
-    });
+            $.when(...savedBookmarkList)
+                .then((...bookmarkedRestaurant) => {
+                    const restaurantDetail = bookmarkedRestaurant.map((result) => {
+                        return result[0];
+                    });
+
+                    restaurantDetail.forEach((item) => {
+                        cuisineApp.displayBookmarkedRestaurants(item);
+                        const $bookmarkIcon = $('.fa-bookmark');
+                        const $savedBookmark = $('.bookmark.saved');
+                        $bookmarkIcon.addClass('saved');
+                        $savedBookmark.append('<i class="fas fa-star"></i>');
+                    });
+                });
+        });
+    // }
 }
 
 cuisineApp.generateRestaurantContainer = function (restaurant) {
@@ -344,11 +345,9 @@ cuisineApp.generateRestaurantContainer = function (restaurant) {
 }
 
 cuisineApp.displayBookmarkedRestaurants = function (restaurant) {
-   
     const restaurantDescription = cuisineApp.generateRestaurantContainer(restaurant);
-    const $displayedBookmarks = $('#displayedBookmarks');
     const $bookmarkSection = $('#bookmarkSection');
-    
+    const $displayedBookmarks = $('#displayedBookmarks');
     $bookmarkSection.css('display', 'block');
     $displayedBookmarks.append(restaurantDescription);
 }
@@ -367,12 +366,20 @@ cuisineApp.bookmarkRestaurants = function () {
 
     // Returns an array of objects
     const bookmarks = Array.from(document.querySelectorAll('.bookmark'));
-    const dbRef = firebase.database().ref();
+    const userID = firebase.auth().currentUser.uid;
+    const userRef = firebase.database().ref('users').child(userID);
 
     let saved = [];
 
-    const bookmarkList = {
-        bookmarks: saved
+    const bookmarkList = {};
+
+    function checkUserID() {
+        if (userRef === userID) {
+            userRef.update(bookmarkList);
+        }
+        else {
+            userRef.set(bookmarkList);
+        }
     }
 
     bookmarks.forEach(function (bookmark) {
@@ -384,13 +391,15 @@ cuisineApp.bookmarkRestaurants = function () {
                 saved = saved.filter(function (value) {
                     return value !== $(bookmark).attr('id');
                 });
+                
             } else {
                 $(this).addClass('saved');
                 $(this).append(`<i class="fas fa-star"></i>`);
                 $(this).find('.fa-bookmark').css('transform', 'scaleY(2)');
                 saved.push($(this).attr('id'));
             }
-            dbRef.update(bookmarkList);
+            bookmarkList.bookmarks = saved;
+            checkUserID();
             cuisineApp.bookmarkAjaxRequest();
         })
     })
